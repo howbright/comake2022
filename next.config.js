@@ -1,8 +1,14 @@
-/** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  reactStrictMode: true,
-  assetPrefix:
-    process.env.NODE_ENV === "production"
-      ? "https://howbright.github.io/comake2022"
-      : "",
-};
+  // Use the CDN in production and localhost for development.
+  assetPrefix: isProd ? 'https://howbright.github.io/comake2022' : 'http://localhost:3000',
+  distDir: "_next",
+  generateBuildId: async () => {
+    if (process.env.BUILD_ID) {
+      return process.env.BUILD_ID;
+    } else {
+      return `${new Date().getTime()}`;
+    }
+  }
+}

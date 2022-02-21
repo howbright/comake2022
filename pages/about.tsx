@@ -24,7 +24,7 @@ const About: NextPage = () => {
           MUI v5 + Next.js with TypeScript example
         </Typography>
         <Box maxWidth="sm">
-          <Button variant="contained" component={Link} noLinkStyle href="/comake2022">
+          <Button variant="contained" component={Link} noLinkStyle href={process.env.NEXT_PUBLIC_BACKEND_URL}>
             Go to the home page
           </Button>
         </Box>
