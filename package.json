@@ -1,10 +1,11 @@
 {
+  "homepage": "http://howbright.github.io/comake2022",
   "name": "comake2022",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build  && next export",
     "start": "next start",
     "lint": "next lint",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
@@ -25,6 +26,7 @@
     "@types/react": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "gh-pages": "^3.2.3",
     "typescript": "latest"
   }
 }
