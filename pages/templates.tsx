@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Layout from '../components/layout';
 
-const Alarm: NextPage = () => {
+const Template: NextPage = () => {
   return (
    <Layout>
     <Container maxWidth="lg">
@@ -27,4 +27,4 @@ const Alarm: NextPage = () => {
   );
 };
 
-export default Alarm;
+export default Template;

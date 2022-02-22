@@ -50,14 +50,12 @@ export default function SimpleBottomNavigation(props: NavProps) {
     (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
     console.log(router.pathname)
     if (router.pathname === '/') {
-      console.log(0)
       setValue(0)
-    }
-    else if (router.pathname === '/alarm') {
-      setValue(1)
     } else if (router.pathname === '/collabo') {
-      setValue(2)
+      setValue(1)
     } else if (router.pathname === '/document-box') {
+      setValue(2)
+    } else if (router.pathname === '/templates') {
       setValue(3)
     }
   },);
@@ -73,10 +71,10 @@ export default function SimpleBottomNavigation(props: NavProps) {
              
           }}
         >
-          <BottomNavigationAction label="Home" icon={<RestoreIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/"} />
-          <BottomNavigationAction label="새소식" icon={<FavoriteIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/alarm"}/>
-          <BottomNavigationAction label="콜라보 작성" icon={<ArchiveIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/collabo"} />
-          <BottomNavigationAction label="계약서함" icon={<FavoriteIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/document-box"}/>
+          <BottomNavigationAction label="홈" icon={<RestoreIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/"} />
+          <BottomNavigationAction label="콜라보 작성" icon={<FavoriteIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/collabo"}/>
+          <BottomNavigationAction label="계약서함" icon={<ArchiveIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/document-box"} />
+          <BottomNavigationAction label="계약서 양식" icon={<FavoriteIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/templates"}/>
         </BottomNavigation>
       </Paper>
     </Box>
