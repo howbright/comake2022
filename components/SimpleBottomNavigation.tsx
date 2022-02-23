@@ -3,40 +3,13 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
 import Link from '../src/Link';
-import { PinDropSharp, SettingsInputAntennaTwoTone } from '@mui/icons-material';
 import { useRouter } from 'next/router'
-
-// 
-// const onLink = (href: string) => {
-//   router.push(href);
-// };
-
-
-// export default function SimpleBottomNavigation() {
-//   const [value, setValue] = React.useState(0);
-
-//   return (
-//     <Box sx={{ width: 500 }}>
-//       <BottomNavigation
-//         showLabels
-//         value={value}
-//         onChange={(event, newValue) => {
-//           setValue(newValue);
-//         }}
-//       >
-//         <BottomNavigationAction label="Recents" icon={<RestoreIcon />} LinkComponent={Link} href='/about'/>
-//         <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-//         <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-//       </BottomNavigation>
-//     </Box>
-//   );
-// }
-
+import HomeIcon from '@mui/icons-material/Home';
+import GroupIcon from '@mui/icons-material/Group';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 interface NavProps{
 }
@@ -71,10 +44,10 @@ export default function SimpleBottomNavigation(props: NavProps) {
              
           }}
         >
-          <BottomNavigationAction label="홈" icon={<RestoreIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/"} />
-          <BottomNavigationAction label="콜라보 작성" icon={<FavoriteIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/collabo"}/>
-          <BottomNavigationAction label="계약서함" icon={<ArchiveIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/document-box"} />
-          <BottomNavigationAction label="계약서 양식" icon={<FavoriteIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/templates"}/>
+          <BottomNavigationAction label="홈" icon={<HomeIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/"} />
+          <BottomNavigationAction label="콜라보 작성" icon={<GroupIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/collabo"}/>
+          <BottomNavigationAction label="계약서함" icon={<InventoryIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/document-box"} />
+          <BottomNavigationAction label="계약서 양식" icon={<LibraryBooksIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/templates"}/>
         </BottomNavigation>
       </Paper>
     </Box>

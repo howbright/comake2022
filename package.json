@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
-    "deploy": "next build && next export && git add out/ && git commit -m \"Deploy gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy": "next build && next export && touch ./out/.nojekyll && git add out/ && git commit -m \"Deploy gh-pages4\" && git subtree push --prefix out origin gh-pages4"
   },
   "dependencies": {
     "@emotion/cache": "latest",
