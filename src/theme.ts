@@ -12,11 +12,15 @@ const theme = createTheme({
     secondary: {
       light: '#ffffb3',
       main: '#ffe082',
-      dark: '#caae53'
+      dark: '#caae53',
+      contrastText: '#cf000d'
     },
     error: {
       main: red.A400,
     },
+    background: {
+      default: "#e8eaf6"
+    }
   },
 });
 

@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 
 export default function ButtonAppBar() {
-    console.log(process.env.NEXT_PUBLIC_BACKEND_URL + 'COMAKE_LOGO_W.png')
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
