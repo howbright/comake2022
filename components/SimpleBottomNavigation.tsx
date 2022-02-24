@@ -10,6 +10,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import { Badge } from '@mui/material';
 
 interface NavProps{
 }
@@ -44,8 +45,9 @@ export default function SimpleBottomNavigation(props: NavProps) {
              
           }}
         >
-          <BottomNavigationAction label="홈" icon={<HomeIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/"} />
-          <BottomNavigationAction label="콜라보 작성" icon={<GroupIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/collabo"}/>
+          <BottomNavigationAction label="홈" icon={<HomeIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/"} /> 
+           <BottomNavigationAction label="콜라보 작성" icon={ <Badge badgeContent={4} color="error"><GroupIcon /></Badge>} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/collabo"}>
+           </BottomNavigationAction>
           <BottomNavigationAction label="계약서함" icon={<InventoryIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/document-box"} />
           <BottomNavigationAction label="계약서 양식" icon={<LibraryBooksIcon />} LinkComponent={Link} href={process.env.NEXT_PUBLIC_BACKEND_URL + "/templates"}/>
         </BottomNavigation>

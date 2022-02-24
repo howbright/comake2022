@@ -10,18 +10,18 @@ import AddIcon from '@mui/icons-material/Add';
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="fixed">
+        <Toolbar sx={{ backgroundColor: "white" }}>
             <Box
             component="img"
             sx={{
             width: 90,
             }}
             alt="logo"
-            src={process.env.NEXT_PUBLIC_BACKEND_URL + '/COMAKE_LOGO_W.png'}
+            src={process.env.NEXT_PUBLIC_BACKEND_URL + '/COMAKE_LOGO.png'}
         />
           <Box flex={1}></Box>
-          <Button variant="contained" startIcon={<AddIcon />} color="secondary">
+          <Button variant="contained" startIcon={<AddIcon />} color="primary">
             새 계약서
            </Button>
         </Toolbar>

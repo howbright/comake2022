@@ -1,130 +1,110 @@
 import * as React from 'react';
 import type { NextPage } from 'next';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from '../src/Link';
-import ProTip from '../src/ProTip';
-import Copyright from '../src/Copyright';
-import Layout from '../components/layout';
 import ButtonAppBar from '../components/ButtonAppBar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import { ListItemIcon, Paper } from '@mui/material';
-import { height } from '@mui/system';
-import theme from '../src/theme';
+import { Alert, Button, Chip, Icon, IconButton, ListItemIcon, Paper } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import TemplateIntro from '../components/TemplateIntro';
+import Layout from '../components/layout';
+import Notification from '../components/Notification';
 
 const Home: NextPage = () => {
   return (
     <Layout>
     <ButtonAppBar></ButtonAppBar>
-    <Box sx={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
-    <Box sx={{ boxShadow: 2 ,
+    <Box sx={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column', alignContent: 'center'}}>
+    <Box sx={{ boxShadow: 1 ,
                width: '100%', 
                maxWidth: '500px', 
                justifySelf: 'center', 
                alignSelf:'center', 
-               height: '500px', 
-               borderRadius: 2, 
+               height: '155px', 
+               borderRadius: 1, 
                backgroundColor: (theme) => theme.palette.background.paper,
-               m:2
+               mt:10, mb: 0.5
   }}>
-     <Box
+    <Box
         sx={{
-          m: 3,
+          my: 2,
+          mx: 3,
           display: 'grid',
-          gridTemplateColumns: '[col1] 80px [col2] auto [col3] 30px',
+          gridTemplateColumns: '[col1] auto [col2] 1fr[col3] 30px',
+          justifyContent: 'start',
           gap: 1,
-          gridTemplateRows: '[row1] 50px [row2] 30px [row3]',
-          gridTemplateAreas: `"profile name setting"
-        "profile email email"
-        "footer footer footer"`,
+          gridTemplateRows: '20px',
+          gridTemplateAreas: `"logo name setting"`,
         }}
       >
-        <Box sx={{ gridArea: 'profile', justifySelf: 'center', alignSelf:'center' }}>
-        <Avatar alt="최민태 변호사" src={process.env.NEXT_PUBLIC_BACKEND_URL + '/test.jpeg'} sx={{ width: 70, height: 70 }} />
+        <Box
+        component="img"
+        sx={{
+          gridArea: 'logo', justifySelf: 'center',
+           height: 20,
+           }}
+        alt="logo"
+        src={process.env.NEXT_PUBLIC_BACKEND_URL + '/logo.jpeg'}
+        >
         </Box>
-        <Box sx={{ gridArea: 'name', bgcolor: 'secondary.main' }}>name</Box>
-        <Box sx={{ gridArea: 'email', bgcolor: 'error.main' }}>email</Box>
-        <Box sx={{ gridArea: 'footer', bgcolor: 'warning.dark' }}>Footer</Box>
-        <Box sx={{ gridArea: 'setting', bgcolor: 'warning.dark' }}>Set</Box>
+        <Box component={'span'} sx={{ gridArea: 'name', mt: -0.1, fontWeight: 'bold', fontSize: '14px'}}>
+          (주)JYP엔터테인먼트
+        </Box>
+        <Box sx={{ gridArea: 'setting',  alignSelf: 'center', display: 'grid', 
+                   justifyContent: 'stretch', alignContent: 'stretch',
+                   borderLeft: 1, borderColor: 'grey.300'
+                   }}>
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <NavigateNextIcon />
+            </IconButton>
+        </Box>
+        
       </Box>
-
-
-  </Box>
-  </Box>
-    {/* <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <ListItemIcon ></ListItemIcon>
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </List> */}
+    <Divider sx={{m: 1}}></Divider>
+     <Box
+        sx={{
+          mx: 1,
+          display: 'grid',
+          gridTemplateColumns: '[col1] 90px [col2] auto [col3] 1fr [col4] 45px',
+          gap: 1,
+          gridTemplateRows: '30px 30px',
+          gridTemplateAreas: `"profile name email setting"
+        "profile title title setting"`
+        }}
+      >
+        <Box sx={{ gridArea: 'profile', justifySelf: 'center', alignSelf:'center'}}>
+          <Avatar alt="최민태 변호사" src={process.env.NEXT_PUBLIC_BACKEND_URL + '/test.jpeg'} sx={{ width: 70, height: 70 }} />
+        </Box>
+        <Box component={'span'} sx={{gridArea: 'name', fontWeight: 'bold', justifySelf: 'start', alignSelf: 'end'
+      }}>
+          최민태
+      </Box>
+        <Box component={'span'} whiteSpace='pre' sx={{ height: '13px', gridArea: 'title',
+             display: 'inline-flex',flexDirection:'column', alignContent: 'end', justifySelf: 'start',
+             fontSize: '13px', color:(theme) => theme.palette.secondary.dark
+      }}>변호사 / 변리사
+      <Box component={'span'} whiteSpace='pre' sx={{ height: '13px', gridArea: 'title',
+             display: 'inline-grid', justifyItems: 'start',
+             fontSize: '13px', cfmnedolor:'blue'
+      }}>법무팀</Box>
+      </Box>
+      <Box sx={{ gridArea: 'email'}}>
+         {/* <MailIcon fontSize='small' sx={{ mr:1, alignSelf: 'center'}} /> */}
+         <Chip sx={{ backgroundColer: 'red'}} label="choitmin@jyp.com"></Chip>
+      </Box>
+      <Box sx={{ gridArea: 'setting',  alignSelf: 'center', display: 'grid', 
+                   justifyContent: 'stretch', alignContent: 'stretch',
+                   borderLeft: 1, borderColor: 'grey.300',
+                   }}>
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <NavigateNextIcon />
+            </IconButton>
+        </Box>
+    </Box>  
+    </Box>
+    <Notification></Notification>
+    <TemplateIntro/>
+    </Box>
     </Layout>
   );
 };
