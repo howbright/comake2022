@@ -7,7 +7,7 @@ interface BodyContainerProps {
 
 export default function BodyContainer({ children }: BodyContainerProps ) {
   return (
-    <Box sx={{ m:0.5, boxShadow: 1, width: '100%', maxWidth: '500px',justifySelf: 'center',  alignSelf: 'center',
+    <Box sx={{ m:0.5, boxShadow: 1, width: '100%', maxWidth: '600px',justifySelf: 'center',  alignSelf: 'center',
               display: 'flex', flexDirection: 'column' , justifyItems: 'center', alignItems: 'center', backgroundColor: 'white'}}>
     {children}
     </Box>

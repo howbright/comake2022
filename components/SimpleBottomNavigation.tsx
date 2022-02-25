@@ -20,9 +20,9 @@ export default function SimpleBottomNavigation(props: NavProps) {
   const router = useRouter();
   const [value, setValue] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
+  
   React.useEffect(() => {
     (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-    console.log(router.pathname)
     if (router.pathname === '/') {
       setValue(0)
     } else if (router.pathname === '/collabo') {

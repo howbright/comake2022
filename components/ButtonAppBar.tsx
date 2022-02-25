@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" elevation={0}>
         <Toolbar sx={{ backgroundColor: "white" }}>
             <Box
             component="img"

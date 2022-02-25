@@ -3,12 +3,13 @@ import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import BasicContainer from '../components/common/BasicContainer';
 import Layout from '../components/layout';
 
 const Collabo: NextPage = () => {
   return (
    <Layout>
-    <Container maxWidth="lg">
+    <BasicContainer>
       <Box
         sx={{
           my: 4,
@@ -22,7 +23,7 @@ const Collabo: NextPage = () => {
          여기는 콜라보 페이지입니다. 
         </Typography>
       </Box>
-    </Container>
+    </BasicContainer>
     </Layout>
   );
 };
