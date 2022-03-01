@@ -1,8 +1,8 @@
-import * as React from 'react';
-import type { NextPage } from 'next';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import type { NextPage } from 'next';
+import * as React from 'react';
 import Layout from '../components/layout';
 
 const DocumentBox: NextPage = () => {

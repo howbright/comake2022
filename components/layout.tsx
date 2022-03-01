@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import React, { ReactChildren, ReactChild } from 'react';
 import SimpleBottomNavigation from './SimpleBottomNavigation'
 
@@ -10,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
 
     return (
       <>
-      <div>{children}</div>
+      <Box>{children}</Box>
       <SimpleBottomNavigation></SimpleBottomNavigation>
       </>
     )

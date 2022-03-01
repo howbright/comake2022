@@ -1,22 +1,17 @@
-import * as React from "react";
-import type { NextPage } from "next";
-import Box from "@mui/material/Box";
-import ButtonAppBar from "../components/ButtonAppBar";
-import Divider from "@mui/material/Divider";
-import Avatar from "@mui/material/Avatar";
-import {
-  Alert,
-  Button,
-  Chip,
-  Icon,
-  IconButton,
-  ListItemIcon,
-  Paper,
-} from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import TemplateIntro from "../components/TemplateIntro";
+import {
+  Chip,
+  IconButton
+} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import type { NextPage } from "next";
+import * as React from "react";
+import ButtonAppBar from "../components/ButtonAppBar";
 import Layout from "../components/layout";
 import Notification from "../components/Notification";
+import TemplateIntro from "../components/TemplateIntro";
 
 const Home: NextPage = () => {
   return (

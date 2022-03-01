@@ -12,15 +12,25 @@
     "deploy": "next build && next export && touch ./out/.nojekyll && git add out/ && git commit -m \"Deploy gh-pages4\" && git subtree push --prefix out origin gh-pages4"
   },
   "dependencies": {
+    "@editorjs/delimiter": "^1.2.0",
+    "@editorjs/editorjs": "^2.23.2",
+    "@editorjs/embed": "^2.5.0",
+    "@editorjs/header": "^2.6.2",
+    "@editorjs/list": "^1.6.2",
+    "@editorjs/marker": "^1.2.2",
+    "@editorjs/paragraph": "^2.8.0",
+    "@editorjs/table": "^2.0.1",
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "editorjs-react-renderer": "^3.0.1",
     "next": "^12.1.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-editor-js": "^2.0.6"
   },
   "devDependencies": {
     "@types/node": "latest",

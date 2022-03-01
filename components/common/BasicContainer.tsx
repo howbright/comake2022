@@ -8,16 +8,40 @@ interface ContainerProps {
 
 export default function BasicContainer({ children }: ContainerProps) {
   return (
-    <Container maxWidth="sm">
-      <Box
+    <Box
         sx={{
-          bgcolor: (theme) => theme.palette.background.default,
-          height: "100vh",
-          border: 1,
+          width: "100%",
+          height: '100%',
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignContent: "center",
         }}
       >
-        {children}
+       <Box
+          sx={{
+            boxShadow: 1,
+            width: "100%",
+            maxWidth: "600px",
+            justifySelf: "center",
+            alignSelf: "center",
+            height: '100vh',
+            backgroundColor: (theme) => theme.palette.background.paper
+          }}
+        >
+       {children}
+       </Box>
+
       </Box>
-    </Container>
+  //   <Container maxWidth="sm">
+  //     <Box
+  //       sx={{
+  //         bgcolor: (theme) => theme.palette.background.default,
+  //         height: "100vh",
+  //       }}
+  //     >
+  //       {children}
+  //     </Box>
+  //   </Container>
   );
 }
