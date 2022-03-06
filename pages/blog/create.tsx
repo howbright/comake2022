@@ -1,0 +1,62 @@
+import Head from 'next/head';
+import dynamic from "next/dynamic";
+import { OutputData } from '@editorjs/editorjs';
+import React from 'react';
+import { Button } from '@mui/material';
+
+const CreateBlog = (props) => { 
+  let ReactEditor = dynamic(() => import('../../components/Editor/ReactEditor'), {
+    ssr: false
+});
+
+  // const onSaveHandler = async (blogData, title, description) => {
+
+  //   const toSaveData = {
+  //     title,
+  //     blogData,
+  //     description,
+  //   };
+
+  //   console.log(toSaveData);
+  //   //make your ajax call to send the data to your server and save it in a database
+  // };
+
+  interface EditorCore {
+    destroy(): Promise<void>
+  
+    clear(): Promise<void>
+  
+    save(): Promise<OutputData>
+  
+    render(data: OutputData): Promise<void>
+  }
+
+  const editorCore = React.useRef(null)
+
+const handleInitialize = React.useCallback((instance) => {
+  editorCore.current = instance
+}, [])
+
+const handleSave = React.useCallback(async () => {
+  const savedData = await editorCore.current.save();
+}, [])
+
+
+  return (
+    <div style={{ width: '80%', margin: '0 auto' }}>
+      <Head>
+        <title>Create new blog</title>
+      </Head>
+      <h1>Create Blog!!!</h1>
+      <button onClick={handleSave}>저장</button>
+      {/* <Editor
+        onSave={(editorData, title, description) =>
+          onSaveHandler(editorData, title, description)
+        }
+      /> */}
+      <ReactEditor onInitialize={handleInitialize} />
+    </div>
+  );
+};
+
+export default CreateBlog;

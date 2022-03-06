@@ -14,8 +14,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
-    "incremental": true
+    "incremental": true,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","pages/blog/*.js", "components/Editor/*.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/blog/*.js", "components/Editor/*.js", "components/Editor/plugin/*.js", "components/Editor/plugin/*.ts","components/Editor/plugin/*.tsx",  "components/Editor/Editor.jsx","components/Editor/plugin/footnotes/*.ts" ],
   "exclude": ["node_modules"]
 }

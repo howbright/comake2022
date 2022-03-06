@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+
 class Editor extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,12 @@ class Editor extends React.Component {
     const Embed = require("@editorjs/embed");
     const Delimiter = require("@editorjs/delimiter");
     const Table = require("@editorjs/table");
+    const Paragraph = require("@editorjs/paragraph");
+    const {SimpleImage} = require("./plugin/SimpleImage.js");
+    ///const {FootnotesBlockTune} = require("./plugin/Footnotes.js");
+
+    console.log(SimpleImage);
+    //console.log(FootnotesBlockTune);
 
     let content = null;
     if (this.props.data !== undefined) {
@@ -26,6 +33,12 @@ class Editor extends React.Component {
       holder: "editorjs",
       logLevel: "ERROR",
       tools: {
+        simage: SimpleImage,
+      // footnote: FootnotesBlockTune,
+        paragraph: {
+          class: Paragraph,
+      //    tune: ['footnote']
+        },
         header: Header,
         embed: {
           class: Embed,
