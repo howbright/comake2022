@@ -2,11 +2,12 @@ import ReactDOM from "react-dom";
 import React, { Component } from "react";
 
 import { createReactEditorJS } from "react-editor-js";
-
 import { EDITOR_JS_TOOLS } from "./constants";
 
 import { OutputData } from "@editorjs/editorjs";
 import { Button } from "@mui/material";
+import FootnotesTune from "./plugin/footnotes/CustomFootnotes";
+import {SimpleImage} from "./plugin/SimpleImage.js";
 
 const ReactEditorJS = createReactEditorJS();
 
@@ -15,13 +16,15 @@ type MyProps = {
     onInitialize: (instance: any)=>void
   };
 
+const TOOL = Object.assign(EDITOR_JS_TOOLS, {footNotes : FootnotesTune, simpleImage : SimpleImage,
+})
 
 export default class ReactEditor extends React.Component<MyProps> {
   render() {
     return (
       <ReactEditorJS 
       onInitialize={this.props.onInitialize}
-        tools={EDITOR_JS_TOOLS}
+        tools={TOOL}
         defaultValue={{
           time: 1635603431943,
           blocks: [

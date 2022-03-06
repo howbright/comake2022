@@ -4,7 +4,8 @@ import { OutputData } from '@editorjs/editorjs';
 import React from 'react';
 import { Button } from '@mui/material';
 
-const CreateBlog = (props) => { 
+interface CreateBlogProps {}
+const CreateBlog = (props: CreateBlogProps) => { 
   let ReactEditor = dynamic(() => import('../../components/Editor/ReactEditor'), {
     ssr: false
 });
@@ -31,9 +32,9 @@ const CreateBlog = (props) => {
     render(data: OutputData): Promise<void>
   }
 
-  const editorCore = React.useRef(null)
+  const editorCore: any = React.useRef(null)
 
-const handleInitialize = React.useCallback((instance) => {
+const handleInitialize = React.useCallback((instance: EditorCore) => {
   editorCore.current = instance
 }, [])
 
@@ -47,7 +48,7 @@ const handleSave = React.useCallback(async () => {
       <Head>
         <title>Create new blog</title>
       </Head>
-      <h1>Create Blog!!!</h1>
+      <h1>Create Blog!!</h1>
       <button onClick={handleSave}>저장</button>
       {/* <Editor
         onSave={(editorData, title, description) =>

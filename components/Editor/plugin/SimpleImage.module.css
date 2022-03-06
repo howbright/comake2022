@@ -1,0 +1,57 @@
+/* .cdx-block:hover {
+    background-color: lightgrey;
+}
+.cdx-block:active {
+    border: 1px black solid;
+}
+
+.cdx-block:focus-within {
+    background-color: white;
+}
+
+.ce-toolbox--opened {
+    border: 1px black solid;
+} */
+
+.simpleimage {
+    padding: 20px 0;
+}
+
+.simpleimage input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+}
+
+
+.simpleimage [contenteditable]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+}
+
+.simpleimage img {
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.simpleimage.withBorder img {
+    border: 1px solid #0e0e0f;
+}
+
+.simpleimage.withBackground {
+    background: #eff2f5;
+    padding: 10px;
+}
+
+.simpleimage.withBackground img {
+    display: block;
+    max-width: 60%;
+    margin: 0 auto;
+}

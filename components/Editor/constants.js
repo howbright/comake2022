@@ -7,6 +7,7 @@ import List from '@editorjs/list'
 // import Image from '@editorjs/image'
 // import Raw from '@editorjs/raw'
 import Header from '@editorjs/header'
+import Paragraph from '@editorjs/paragraph'
 // import Quote from '@editorjs/quote'
 import Marker from '@editorjs/marker'
 // import CheckList from '@editorjs/checklist'
@@ -19,5 +20,12 @@ export const EDITOR_JS_TOOLS = {
   table: Table,
   marker: Marker,
   list: List,
-  header: Header,
+  header: {
+    class:Header,
+    tunes: ['footNotes']
+  },
+  paragraph: {
+    class: Paragraph,
+    tunes: ['footNotes']
+  }
 }
