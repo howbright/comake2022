@@ -69,6 +69,12 @@
    
 }
 
+.ej-fn-popover__canvas {
+    border: 1px black solid;
+    display: block;
+    margin: 1rem;
+}
+
 .ej-fn-popover__textarea:empty::before {
     content: attr(data-placeholder);
     color: #707684;

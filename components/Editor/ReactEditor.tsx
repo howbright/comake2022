@@ -8,6 +8,7 @@ import { OutputData } from "@editorjs/editorjs";
 import { Button } from "@mui/material";
 import FootnotesTune from "./plugin/footnotes/CustomFootnotes";
 import {SimpleImage} from "./plugin/SimpleImage.js";
+import SignatureTune from "./plugin/signature/SignatureTune";
 
 const ReactEditorJS = createReactEditorJS();
 
@@ -16,7 +17,9 @@ type MyProps = {
     onInitialize: (instance: any)=>void
   };
 
-const TOOL = Object.assign(EDITOR_JS_TOOLS, {footNotes : FootnotesTune, simpleImage : SimpleImage,
+const TOOL = Object.assign(EDITOR_JS_TOOLS, {
+  signature: SignatureTune,
+  simpleImage : SimpleImage,
 })
 
 export default class ReactEditor extends React.Component<MyProps> {

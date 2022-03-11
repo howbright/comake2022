@@ -16,6 +16,16 @@
     "jsxImportSource": "@emotion/react",
     "incremental": true,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/blog/*.js", "components/Editor/*.js", "components/Editor/plugin/*.js", "components/Editor/plugin/*.ts","components/Editor/plugin/*.tsx",  "components/Editor/Editor.jsx","components/Editor/plugin/footnotes/*.ts" ],
+  "include": ["next-env.d.ts",
+     "**/*.ts", "**/*.tsx", 
+     "pages/blog/*.js", 
+     "components/Editor/*.js", 
+     "components/Editor/plugin/*.js", 
+     "components/Editor/plugin/*.ts",
+     "components/Editor/plugin/*.tsx",  
+     "components/Editor/Editor.jsx",
+     "components/Editor/plugin/footnotes/*.ts", 
+     ".d.ts", 
+     "components/Editor/plugin/signature/*.ts" ],
   "exclude": ["node_modules"]
 }

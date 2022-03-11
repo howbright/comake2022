@@ -68,9 +68,10 @@ export default class Note {
    * @param id - Note's id if presented
    */
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  constructor(rangeOrNode: Range | HTMLElement, popover: Popover, id = nanoid(6)) {
+  constructor(rangeOrNode: Range | HTMLElement, popover: Popover, id = "a" + nanoid(6)) {
     this.popover = popover;
     this.id = id;
+    this.node.textContent = "서명/인"
 
     if (rangeOrNode instanceof Range) {
       this.range = rangeOrNode;
@@ -88,7 +89,7 @@ export default class Note {
     this.node.dataset.tune = Note.dataAttribute;
     this.node.dataset.id = this.id;
     this.node.addEventListener('click', () => {
-      this.node.classList.add(styles['positionrel'])
+     // this.node.classList.add(styles['positionrel'])
      this.popover.open(this);
     //  var rect = this.node.getBoundingClientRect();
     //   console.log(rect.top, rect.right, rect.bottom, rect.left);  
@@ -121,7 +122,7 @@ export default class Note {
   public set index(index: number) {
     this._index = index;
 
-    this.node.textContent = this._index.toString();
+    // this.node.textContent = this._index.toString();
   }
 
   /**

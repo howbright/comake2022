@@ -22,10 +22,10 @@ export const EDITOR_JS_TOOLS = {
   list: List,
   header: {
     class:Header,
-    tunes: ['footNotes']
+    tunes: ['signature']
   },
   paragraph: {
     class: Paragraph,
-    tunes: ['footNotes']
+    tunes: ['signature']
   }
 }

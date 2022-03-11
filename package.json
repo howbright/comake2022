@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@codexteam/shortcuts": "^1.1.1",
+    "@deckdeckgo/drag-resize-rotate": "^2.2.1",
     "@editorjs/delimiter": "^1.2.0",
     "@editorjs/editorjs": "^2.23.2",
     "@editorjs/embed": "^2.5.0",
@@ -31,7 +32,9 @@
     "next": "^12.1.0",
     "react": "latest",
     "react-dom": "latest",
-    "react-editor-js": "^2.0.6"
+    "react-editor-js": "^2.0.6",
+    "resizedrag": "^1.0.4",
+    "simple-drawing-board": "^3.1.2"
   },
   "devDependencies": {
     "@types/editorjs__header": "^2.6.0",

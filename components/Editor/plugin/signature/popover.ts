@@ -2,8 +2,11 @@ import { make } from '../dom';
 import styles from './popover.module.css';
 import Note from './note';
 import { API } from '@editorjs/editorjs';
-import { FootnotesTuneConfig } from './CustomFootnotes';
+import { FootnotesTuneConfig } from './SignatureTune';
 import { isRangeAtEnd, setSelectionAtEnd, throttled } from '../utils';
+import {create, SimpleDrawingBoard} from 'simple-drawing-board';
+import Signature from './signature';
+
 
 /**
  *
@@ -17,7 +20,8 @@ export default class Popover {
   /**
    * Editable area of popover
    */
-  public textarea: HTMLElement = make('div', styles['ej-fn-popover__textarea']);
+ // public textarea: HTMLElement = make('div', styles['ej-fn-popover__textarea']);
+  public signarea: HTMLCanvasElement = make('canvas', styles['ej-fn-popover__canvas'])
 
   /**
    * Current note to edit
@@ -52,37 +56,57 @@ export default class Popover {
    * Tune's config
    */
   private config: FootnotesTuneConfig;
+ // private context : CanvasRenderingContext2D | null;
+
+ // private isMouseDown: boolean;
+  private x: number = 0;
+  private y: number = 0;
+
+  private sdb: SimpleDrawingBoard;
+
+  private signature: Signature;
 
   /**
    * @param wrapper - Tune's wrapper
    * @param api - Editor.js API
    * @param config - Tune's config
    */
-  constructor(wrapper: HTMLElement, api: API, config: FootnotesTuneConfig) {
+  constructor(wrapper: HTMLElement, api: API, config: FootnotesTuneConfig, signature: Signature) {
     this.api = api;
     this.wrapper = wrapper;
     this.readOnly = api.readOnly.isEnabled;
     this.config = config;
-
+    this.signature = signature;
     this.makeUI();
+
+    this.signarea["width"] = 600;
+    this.signarea["height"] = 300;
+    this.sdb = create(this.signarea);
+    this.sdb.setLineSize(2);
+    this.sdb.setLineColor("black");
+   
+
 
     /**
      * If enter pressed, insert linebreak
      */
-    this.node.addEventListener('keydown', (e) => {
-      e.stopPropagation();
+    // this.node.addEventListener('keydown', (e) => {
+    //   e.stopPropagation();
 
-      if (e.key !== 'Enter') {
-        return;
-      }
+    //   if (e.key !== 'Enter') {
+    //     return;
+    //   }
 
-      this.onEnterPressed(e);
-    }, true);
+    //   this.onEnterPressed(e);
+    // }, true);
 
     this.onClickOutside = this.onClickOutside.bind(this);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     this.move = throttled(150, this.move.bind(this)).bind(this);
+
   }
+
+ 
 
   /**
    * Opens popover
@@ -98,8 +122,8 @@ export default class Popover {
     }
 
     this.currentNote = note;
-    this.textarea.innerHTML = note.content;
-    this.textarea.contentEditable = this.readOnly ? 'false' : 'true';
+   // this.textarea.innerHTML = note.content;
+   // this.textarea.contentEditable = this.readOnly ? 'false' : 'true';
 
     document.addEventListener('click', this.onClickOutside, true);
     window.addEventListener('resize', this.move);
@@ -111,7 +135,7 @@ export default class Popover {
     /**
      * Set cursor to the end of text
      */
-    setSelectionAtEnd(this.textarea);
+    //setSelectionAtEnd(this.textarea);
   }
 
   /**
@@ -123,8 +147,24 @@ export default class Popover {
     document.removeEventListener('click', this.onClickOutside, true);
     window.removeEventListener('resize', this.move);
 
+    //사인의 위치잡기. 
+    let ele = this.wrapper.querySelector(`sup[data-id=${this.currentNote?.id}]`)
+    let target = ele!.closest('.ce-block')
+
+    // Get the top, left coordinates of two elements
+    const eleRect = ele!.getBoundingClientRect();
+    const targetRect = target!.getBoundingClientRect();
+
+// // Calculate the top and left positions
+    const top = eleRect.top - targetRect.top - 50;
+    const left = eleRect.left - targetRect.left;
+    this.signature.node.style["top"] = top + 'px';
+    this.signature.node.style["left"] = left + 'px';
+
+    this.signature.open(this.currentNote!);
+    this.signature.signimage.src= this.sdb.toDataURL();
     this.node.classList.remove(styles['ej-fn-popover--opened']);
-    this.textarea.contentEditable = 'false';
+    //this.textarea.contentEditable = 'false';
 
     if (!this.currentNote) {
       return;
@@ -135,7 +175,7 @@ export default class Popover {
     }
 
     if (!this.readOnly) {
-      this.currentNote.content = this.textarea.innerHTML;
+     // this.currentNote.content = this.textarea.innerHTML;
     }
 
     this.currentNote = null;
@@ -147,10 +187,11 @@ export default class Popover {
    * @private
    */
   private makeUI(): void {
-    this.textarea.dataset.inlineToolbar = 'true';
-    this.textarea.dataset.placeholder = this.api.i18n.t(this.config.placeholder || 'Write a footnote');
+//this.textarea.dataset.inlineToolbar = 'true';
+    //this.textarea.dataset.placeholder = this.api.i18n.t(this.config.placeholder || 'Write a footnote');
 
-    this.node.append(this.textarea);
+    this.signarea.classList.add('js-paint')
+    this.node.append(this.signarea);
 
     if (this.readOnly) {
       return;
@@ -301,7 +342,7 @@ export default class Popover {
     selection?.removeAllRanges();
     selection?.addRange(range);
 
-    this.textarea.normalize();
+    //this.textarea.normalize();
   }
 
   /**
@@ -321,7 +362,7 @@ export default class Popover {
     /**
      * If click was on the same note sup element, save lastNote to not open popover again
      */
-    if (isClickedOnSup && (e.target as HTMLElement).textContent === this.currentNote!.index.toString()) {
+    if (isClickedOnSup && (e.target as HTMLElement).dataset.id === this.currentNote?.node!.dataset.id) {
       this.lastNote = this.currentNote;
     } else {
       this.lastNote = null;
