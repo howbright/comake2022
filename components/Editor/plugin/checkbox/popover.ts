@@ -2,9 +2,8 @@ import { make } from '../dom';
 import styles from './popover.module.css';
 import Note from './note';
 import { API } from '@editorjs/editorjs';
-import { SignatureTuneConfig } from './SignatureTune';
+import { FootnotesTuneConfig } from './CheckTune';
 import { isRangeAtEnd, setSelectionAtEnd, throttled } from '../utils';
-import {create, SimpleDrawingBoard} from 'simple-drawing-board';
 import Signature from './signature';
 
 
@@ -55,14 +54,8 @@ export default class Popover {
   /**
    * Tune's config
    */
-  private config: SignatureTuneConfig;
+  private config: FootnotesTuneConfig;
  // private context : CanvasRenderingContext2D | null;
-
- // private isMouseDown: boolean;
-  private x: number = 0;
-  private y: number = 0;
-
-  private sdb: SimpleDrawingBoard;
 
   private signature: Signature;
 
@@ -71,7 +64,7 @@ export default class Popover {
    * @param api - Editor.js API
    * @param config - Tune's config
    */
-  constructor(wrapper: HTMLElement, api: API, config: SignatureTuneConfig, signature: Signature) {
+  constructor(wrapper: HTMLElement, api: API, config: FootnotesTuneConfig, signature: Signature) {
     this.api = api;
     this.wrapper = wrapper;
     this.readOnly = api.readOnly.isEnabled;
@@ -81,9 +74,7 @@ export default class Popover {
 
     this.signarea["width"] = 600;
     this.signarea["height"] = 300;
-    this.sdb = create(this.signarea);
-    this.sdb.setLineSize(3);
-    this.sdb.setLineColor("black");
+
    
 
 
@@ -148,7 +139,7 @@ export default class Popover {
     window.removeEventListener('resize', this.move);
 
     //사인의 위치잡기. 
-    let ele:HTMLElement = this.wrapper.querySelector(`sup[data-id=${this.currentNote?.id}]`) as HTMLElement;
+    let ele = this.wrapper.querySelector(`sup[data-id=${this.currentNote?.id}]`)
     let target = ele!.closest('.ce-block')
 
     // Get the top, left coordinates of two elements
@@ -162,12 +153,7 @@ export default class Popover {
     this.signature.node.style["left"] = left + 'px';
 
     this.signature.open(this.currentNote!);
-    this.signature.signimage.src= this.sdb.toDataURL();
     this.node.classList.remove(styles['ej-fn-popover--opened']);
-    ele!.style['backgroundColor'] = "#fff"
-    ele!.style['color'] = "#D5D3D3"
-    ele!.style['border'] = "0px"
-    ele!.style['boxShadow'] = "0 0 0 0"
     //this.textarea.contentEditable = 'false';
 
     if (!this.currentNote) {

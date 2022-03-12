@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import FootnotesTune from "./plugin/footnotes/CustomFootnotes";
 import {SimpleImage} from "./plugin/SimpleImage.js";
 import SignatureTune from "./plugin/signature/SignatureTune";
+import CheckboxTune from "./plugin/checkbox/CheckTune";
 
 const ReactEditorJS = createReactEditorJS();
 
@@ -20,6 +21,8 @@ type MyProps = {
 const TOOL = Object.assign(EDITOR_JS_TOOLS, {
   signature: SignatureTune,
   simpleImage : SimpleImage,
+  footnotes: FootnotesTune,
+  check: CheckboxTune
 })
 
 export default class ReactEditor extends React.Component<MyProps> {

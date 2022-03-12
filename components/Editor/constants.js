@@ -19,13 +19,16 @@ export const EDITOR_JS_TOOLS = {
   embed: Embed,
   table: Table,
   marker: Marker,
-  list: List,
+  list: {
+    class: List,
+    tunes: ['signature','footnotes','check']
+  },
   header: {
     class:Header,
-    tunes: ['signature']
+    tunes: ['signature','footnotes','check']
   },
   paragraph: {
     class: Paragraph,
-    tunes: ['signature']
+    tunes: ['signature','footnotes','check']
   }
 }

@@ -1,9 +1,9 @@
-import { API } from "@editorjs/editorjs";
 import { make } from "../dom";
-import { isRangeAtEnd } from "../utils";
-import Note from "./note";
 import styles from "./signature.module.css";
-import { SignatureTuneConfig } from "./SignatureTune";
+import Note from "./note";
+import { API } from "@editorjs/editorjs";
+import { FootnotesTuneConfig } from "./CheckTune";
+import { isRangeAtEnd, setSelectionAtEnd, throttled } from "../utils";
 
 function dragElement(elmnt:HTMLElement, headerEl: HTMLElement) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -100,7 +100,7 @@ export default class Signature {
   /**
    * Tune's config
    */
-  private config: SignatureTuneConfig;
+  private config: FootnotesTuneConfig;
   // private context : CanvasRenderingContext2D | null;
 
   // private isMouseDown: boolean;
@@ -112,7 +112,7 @@ export default class Signature {
    * @param api - Editor.js API
    * @param config - Tune's config
    */
-  constructor(wrapper: HTMLElement, api: API, config: SignatureTuneConfig) {
+  constructor(wrapper: HTMLElement, api: API, config: FootnotesTuneConfig) {
     this.api = api;
     this.wrapper = wrapper;
     this.readOnly = api.readOnly.isEnabled;

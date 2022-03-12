@@ -37,6 +37,7 @@
     "simple-drawing-board": "^3.1.2"
   },
   "devDependencies": {
+    "@editorjs/footnotes": "^1.1.0",
     "@types/editorjs__header": "^2.6.0",
     "@types/node": "latest",
     "@types/react": "latest",

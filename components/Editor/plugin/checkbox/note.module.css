@@ -1,23 +1,32 @@
+
+
 .ej-fn-sup {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 7px 0 5px;
-    padding: 3px 6px;
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 600;
-    cursor: pointer;
-
-    background: #FFFFFF;
-    border: 1px solid #1D202B;
-    box-shadow: 0 2px 0 0 rgba(29,32,43,0.15), 0 4px 12px -3px rgba(29,32,43,0.15);
-    border-radius: 5px;
-    animation: sup-in 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
-    will-change: transform, opacity;
-
-    user-select: none;
+   align-items: center;
+   justify-content: center;
+   font-size: 15px;
+   line-height: 15px;
+   font-weight: 600;
+   padding-bottom: -10px;
+   margin-bottom: 10px;
+   cursor: pointer;
+   background: Yellow;
+   box-shadow: 0 2px 0 0 rgba(29,32,43,0.15), 0 4px 12px -3px rgba(29,32,43,0.15);
+   border-radius: 5px;
+   animation: sup-in 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+   will-change: transform, opacity;
+   position: relative;
+   user-select: none;
 }
+
+
+
+  .ej-fn-sup input[type="checkbox"]{
+    display: flex;
+    top: 5px;
+    background: Yellow;
+  }
+ 
 
 /*test*/
 .positionrel {

@@ -50,7 +50,9 @@ export default class Note {
   /**
    * Sup element
    */
-  public node: HTMLElement = make('sup', styles['ej-fn-sup'], { contentEditable: 'false' });
+  //  <input type="checkbox"
+  // public node: HTMLElement = make<HTMLInputElement>('input', styles['ej-fn-sup'], { type: 'checkbox' });
+  public node: HTMLElement = make('sup', styles['ej-fn-sup'], {contentEditable: "false"});
 
   /**
    * Note's index
@@ -68,9 +70,12 @@ export default class Note {
    * @param id - Note's id if presented
    */
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  constructor(rangeOrNode: Range | HTMLElement, popover: Popover, id = nanoid(6)) {
+  constructor(rangeOrNode: Range | HTMLElement, popover: Popover, id = "a" + nanoid(6)) {
     this.popover = popover;
     this.id = id;
+   
+   var check: HTMLElement = make<HTMLInputElement>('input', styles['ej-fn-sup'], { type: 'checkbox' });
+   this.node.appendChild(check);
 
     if (rangeOrNode instanceof Range) {
       this.range = rangeOrNode;
@@ -87,10 +92,7 @@ export default class Note {
 
     this.node.dataset.tune = Note.dataAttribute;
     this.node.dataset.id = this.id;
-    this.node.addEventListener('click', () => {
-     this.popover.open(this);
 
-    });
   }
 
   /**
@@ -106,7 +108,7 @@ export default class Note {
   public set index(index: number) {
     this._index = index;
 
-    this.node.textContent = this._index.toString();
+    // this.node.textContent = this._index.toString();
   }
 
   /**
