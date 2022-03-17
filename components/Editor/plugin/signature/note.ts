@@ -62,6 +62,7 @@ export default class Note {
    */
   private popover: Popover;
 
+  private clickEventHandler: EventListener;
   /**
    * @param rangeOrNode - range to insert sup or existing sup to hydrate
    * @param popover - editable popover
@@ -88,25 +89,16 @@ export default class Note {
 
     this.node.dataset.tune = Note.dataAttribute;
     this.node.dataset.id = this.id;
-    this.node.addEventListener('click', () => {
-     // this.node.classList.add(styles['positionrel'])
-     this.popover.open(this);
-    //  var rect = this.node.getBoundingClientRect();
-    //   console.log(rect.top, rect.right, rect.bottom, rect.left);  
-    //   const outbox: HTMLElement = make('div', styles['fixed']);
-    //   this.node.append(outbox)
-     // outbox.style.top = (rect.top - 50) + 'px';
-     // outbox.style.left = (rect.left - 50) + 'px';
+    this.clickEventHandler = this.openPop.bind(this)
+    this.node.addEventListener('click', this.clickEventHandler);
+   
+  }
 
-      //const bodyE = document.getElementsByClassName("codex-editor-overlay")[0];
-      //bodyE?.append(outbox);
-    //  const outbox: HTMLElement = make('div', styles['outbox'], { contentEditable: 'false' });
-    //  const signebox: HTMLElement = make('div', styles['signbox'], { contentEditable: 'true' });
-    //  outbox.appendChild(signebox);
-     //signebox.classList.add(styles['both'])
-    //  this.node.appendChild(outbox);
-
-    });
+  private openPop() {
+    if(this.popover) {
+      this.node.parentElement!.blur();  
+      this.popover.open(this);
+    }
   }
 
   /**
@@ -122,7 +114,6 @@ export default class Note {
   public set index(index: number) {
     this._index = index;
 
-    // this.node.textContent = this._index.toString();
   }
 
   /**
@@ -141,5 +132,15 @@ export default class Note {
       content: this.content,
       superscript: this.index,
     };
+  }
+
+  public removePop(): void {
+    this.node.removeEventListener('click', this.clickEventHandler);
+    this.node.style["cursor"] = "default"
+    this.node.style["backgroundColor"] = "white"
+    this.node.style["color"] = "grey"
+    this.node.style["border"] = "0"
+    this.node.style["boxShadow"] = "0 0 0 0"
+    // this.node.textContent = "( 서명/인 )"
   }
 }

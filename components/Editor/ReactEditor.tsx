@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 import { createReactEditorJS } from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "./constants";
-
+import styles from "./ReactEditor.module.css";
 import { OutputData } from "@editorjs/editorjs";
 import { Button } from "@mui/material";
 import FootnotesTune from "./plugin/footnotes/CustomFootnotes";
@@ -28,7 +28,7 @@ const TOOL = Object.assign(EDITOR_JS_TOOLS, {
 export default class ReactEditor extends React.Component<MyProps> {
   render() {
     return (
-      <ReactEditorJS 
+      <ReactEditorJS
       onInitialize={this.props.onInitialize}
         tools={TOOL}
         defaultValue={{
@@ -151,7 +151,15 @@ export default class ReactEditor extends React.Component<MyProps> {
                 stretched: false,
                 withBackground: false
               }
-            }
+            },
+            {
+              id: "IpKh1dMysd",
+              type: "paragraph",
+              data: {
+                text:
+                  "We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make it's core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏"
+              }
+            },
           ]
         }}
       />

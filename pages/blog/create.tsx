@@ -44,7 +44,7 @@ const handleSave = React.useCallback(async () => {
 
 
   return (
-    <div style={{ width: '80%', margin: '0 auto', backgroundColor: '#fff' }}>
+    <div style={{ width: '100%', maxWidth: '900px', padding: '20px', margin: '0 auto', backgroundColor: '#fff' }}>
       <Head>
         <title>Create new blog</title>
       </Head>

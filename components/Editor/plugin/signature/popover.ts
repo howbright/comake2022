@@ -90,15 +90,15 @@ export default class Popover {
     /**
      * If enter pressed, insert linebreak
      */
-    // this.node.addEventListener('keydown', (e) => {
-    //   e.stopPropagation();
+    this.node.addEventListener('keydown', (e) => {
+      e.stopPropagation();
 
-    //   if (e.key !== 'Enter') {
-    //     return;
-    //   }
+      if (e.key !== 'Enter') {
+        return;
+      }
 
-    //   this.onEnterPressed(e);
-    // }, true);
+      this.onEnterPressed(e);
+    }, true);
 
     this.onClickOutside = this.onClickOutside.bind(this);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -149,25 +149,40 @@ export default class Popover {
 
     //사인의 위치잡기. 
     let ele:HTMLElement = this.wrapper.querySelector(`sup[data-id=${this.currentNote?.id}]`) as HTMLElement;
-    let target = ele!.closest('.ce-block')
+    ele.style["position"] = "relative";
+    let signWrapper=make("div");
+    let signimage = make<HTMLImageElement>("img");
+    signimage.width= 120;
+    signimage.height= 100;
+    signimage.src = this.sdb.toDataURL();
+    signWrapper.append(signimage);
+    signWrapper.style["position"] = "absolute";
+    let eleRect = ele!.getBoundingClientRect();
+    let top = (eleRect.bottom - eleRect.top) / 2  - 50;
+    let left = (eleRect.right - eleRect.left) / 2 - 70 ;
+    signWrapper.style["top"] = top + "px"
+    signWrapper.style["left"] = left + 'px';
+    ele.append(signWrapper);
+    this.currentNote!.removePop()
+
+    //let target = ele!.closest('.ce-block')
 
     // Get the top, left coordinates of two elements
-    const eleRect = ele!.getBoundingClientRect();
-    const targetRect = target!.getBoundingClientRect();
+   
+   // const targetRect = target!.getBoundingClientRect();
 
 // // Calculate the top and left positions
-    const top = eleRect.top - targetRect.top - 50;
-    const left = eleRect.left - targetRect.left;
-    this.signature.node.style["top"] = top + 'px';
-    this.signature.node.style["left"] = left + 'px';
+  
+    // this.signature.node.style["top"] = top + 'px';
+    // this.signature.node.style["left"] = left + 'px';
 
-    this.signature.open(this.currentNote!);
-    this.signature.signimage.src= this.sdb.toDataURL();
+    // this.signature.open(this.currentNote!);
+    //this.signature.signimage.src= this.sdb.toDataURL();
     this.node.classList.remove(styles['ej-fn-popover--opened']);
-    ele!.style['backgroundColor'] = "#fff"
-    ele!.style['color'] = "#D5D3D3"
-    ele!.style['border'] = "0px"
-    ele!.style['boxShadow'] = "0 0 0 0"
+    // ele!.style['backgroundColor'] = "#fff"
+    // ele!.style['color'] = "#D5D3D3"
+    // ele!.style['border'] = "0px"
+    // ele!.style['boxShadow'] = "0 0 0 0"
     //this.textarea.contentEditable = 'false';
 
     if (!this.currentNote) {
@@ -319,9 +334,9 @@ export default class Popover {
     /**
      * If meta for MacOS or ctrl for others is pressed, apply changes
      */
-    if (this.isMacOS() ? event.metaKey : event.ctrlKey) {
-      this.close();
-    }
+    // if (this.isMacOS() ? event.metaKey : event.ctrlKey) {
+    //   this.close();
+    // }
 
     /**
      * If no special key pressed emulate shift + enter behaviour
@@ -333,18 +348,18 @@ export default class Popover {
       return;
     }
 
-    const isAtEnd = isRangeAtEnd(range);
+    // const isAtEnd = isRangeAtEnd(range);
 
-    range.insertNode(make('br'));
-    range.collapse();
+    // range.insertNode(make('br'));
+    // range.collapse();
 
-    if (isAtEnd) {
-      range.insertNode(make('br'));
-      range.collapse();
-    }
+    // if (isAtEnd) {
+    //   range.insertNode(make('br'));
+    //   range.collapse();
+    // }
 
-    selection?.removeAllRanges();
-    selection?.addRange(range);
+    // selection?.removeAllRanges();
+    // selection?.addRange(range);
 
     //this.textarea.normalize();
   }
