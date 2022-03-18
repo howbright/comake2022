@@ -17,6 +17,7 @@ import AlignmentTuneTool  from 'editorjs-text-alignment-blocktune';
 import InlineCode from '@editorjs/inline-code';
 import {TipTapTable} from './plugin/table/TipTapTable'
 import NestedList from '@editorjs/nested-list';
+import Checklist from '@editorjs/checklist';
 
 export const EDITOR_JS_TOOLS = {
   // embed: Embed,
@@ -38,5 +39,6 @@ export const EDITOR_JS_TOOLS = {
     class: TipTapTable,
     inlineToolbar: true
   },
-  nestedList: NestedList
+  nestedList: NestedList,
+  checkList: Checklist
 }
