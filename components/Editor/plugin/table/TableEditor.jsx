@@ -133,6 +133,30 @@ function SetTextAlignRightIcon(props) {
   );
 }
 
+function SetVerticalAlignTopIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M8,11H11V21H13V11H16L12,7L8,11M4,3V5H20V3H4Z" />
+    </SvgIcon>
+  );
+}
+
+function SetVerticalAlignCenterIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M8,19H11V23H13V19H16L12,15L8,19M16,5H13V1H11V5H8L12,9L16,5M4,11V13H20V11H4Z" />
+    </SvgIcon>
+  );
+}
+
+function SetVerticalAlignBottomIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M16,13H13V3H11V13H8L12,17L16,13M4,19V21H20V19H4Z" />
+    </SvgIcon>
+  );
+}
+
 function SetTextBoldIcon(props) {
   return (
     <SvgIcon {...props}>
@@ -181,6 +205,27 @@ const CustomTableCell = TableCell.extend({
           return {
             "data-background-color": attributes.backgroundColor,
             style: `background-color: ${attributes.backgroundColor}`,
+          };
+        },
+      },
+    };
+  },
+});
+
+const CustomTableAlignCell = TableCell.extend({
+  addAttributes() {
+    return {
+      // extend the existing attributes …
+      ...this.parent?.(),
+
+      // and add a new one …
+      verticalAlign: {
+        default: 'center',
+        parseHTML: (element) => element.getAttribute("data-vertical-align"),
+        renderHTML: (attributes) => {
+          return {
+            "data-vertical-align": attributes.verticalAlign,
+            style: `vertical-align: ${attributes.verticalAlign}`,
           };
         },
       },
@@ -320,6 +365,27 @@ const MenuBar = ({ editor }) => {
           />
         </span>
       </BlackTooltip>
+      <BlackTooltip title="위로 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetVerticalAlignTopIcon
+            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'top').run()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="가운데 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetVerticalAlignCenterIcon
+            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'middle').run()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="아래 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetVerticalAlignBottomIcon
+            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'bottom').run()}
+          />
+        </span>
+      </BlackTooltip>
     </Box>
   );
 };
@@ -341,7 +407,7 @@ export default (props) => {
       TableRow,
       TableHeader,
       // Default TableCell
-      TableCell,
+      CustomTableAlignCell,
       // Custom TableCell with backgroundColor attribute
       // CustomTableCell,
     ],

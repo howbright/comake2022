@@ -17,17 +17,32 @@ import NestedList from '@editorjs/nested-list';
 import Checklist from '@editorjs/checklist';
 import ColorPlugin from  'editorjs-text-color-plugin';
 import Underline from '@editorjs/underline';
+import BreakLine from 'editorjs-break-line';
 
 export const EDITOR_JS_TOOLS = {
+  breakLine: {
+    class: BreakLine,
+    inlineToolbar: true,
+    shortcut: 'CMD+SHIFT+ENTER',
+  },
   underline: Underline,
   quote: Quote,
   marker: Marker,
   header: {
     class:Header,
+    config: {
+      placeholder: '제목을 입력하세요.  예) 제1조 (사업개요)',
+      levels: [1, 2, 3, 4],
+      defaultLevel: 3,
+    },
     tunes: ['alignment']
   },
   paragraph: {
     class: Paragraph,
+    config: {
+      preserveBlank: true,
+      placeholder: '계약서의 내용을 입력하세요..'
+    },
     tunes: ['alignment', 'footnotes']
   },
   delimiter: Delimiter,
