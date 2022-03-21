@@ -26,6 +26,6 @@
      "components/Editor/Editor.jsx",
      "components/Editor/plugin/footnotes/*.ts", 
      ".d.ts", 
-     "components/Editor/plugin/signature/*.ts" ],
+     "components/Editor/plugin/signature/*.ts", "components/Editor/plugin/table/TableEditor.jsx" ],
   "exclude": ["node_modules"]
 }

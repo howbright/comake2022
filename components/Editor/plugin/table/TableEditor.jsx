@@ -5,6 +5,9 @@ import Table from "@tiptap/extension-table";
 import TableRow from "@tiptap/extension-table-row";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
+import TextAlign from "@tiptap/extension-text-align";
+import Highlight from "@tiptap/extension-highlight"
+import Underline from '@tiptap/extension-underline'
 //import classNames from 'classnames/bind'
 import styles from "./TableEditor.module.scss";
 import { IconButton } from "@mui/material";
@@ -106,6 +109,64 @@ function SetCellAttributeIcon(props) {
   );
 }
 
+function SetTextAlignLeftIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M3,3H21V5H3V3M3,7H15V9H3V7M3,11H21V13H3V11M3,15H15V17H3V15M3,19H21V21H3V19Z" />
+    </SvgIcon>
+  );
+}
+
+function SetTextAlignCenterIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M3,3H21V5H3V3M7,7H17V9H7V7M3,11H21V13H3V11M7,15H17V17H7V15M3,19H21V21H3V19Z" />
+    </SvgIcon>
+  );
+}
+
+function SetTextAlignRightIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M3,3H21V5H3V3M9,7H21V9H9V7M3,11H21V13H3V11M9,15H21V17H9V15M3,19H21V21H3V19Z" />
+    </SvgIcon>
+  );
+}
+
+function SetTextBoldIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M13.5,15.5H10V12.5H13.5A1.5,1.5 0 0,1 15,14A1.5,1.5 0 0,1 13.5,15.5M10,6.5H13A1.5,1.5 0 0,1 14.5,8A1.5,1.5 0 0,1 13,9.5H10M15.6,10.79C16.57,10.11 17.25,9 17.25,8C17.25,5.74 15.5,4 13.25,4H7V18H14.04C16.14,18 17.75,16.3 17.75,14.21C17.75,12.69 16.89,11.39 15.6,10.79Z" />
+    </SvgIcon>
+  );
+}
+
+function SetItalicIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10,4V7H12.21L8.79,15H6V18H14V15H11.79L15.21,7H18V4H10Z" />
+    </SvgIcon>
+  );
+}
+
+function SetMarkIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M18.5,1.15C17.97,1.15 17.46,1.34 17.07,1.73L11.26,7.55L16.91,13.2L22.73,7.39C23.5,6.61 23.5,5.35 22.73,4.56L19.89,1.73C19.5,1.34 19,1.15 18.5,1.15M10.3,8.5L4.34,14.46C3.56,15.24 3.56,16.5 4.36,17.31C3.14,18.54 1.9,19.77 0.67,21H6.33L7.19,20.14C7.97,20.9 9.22,20.89 10,20.12L15.95,14.16" />
+    </SvgIcon>
+  );
+}
+
+function SetUnderlindIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M5,21H19V19H5V21M12,17A6,6 0 0,0 18,11V3H15.5V11A3.5,3.5 0 0,1 12,14.5A3.5,3.5 0 0,1 8.5,11V3H6V11A6,6 0 0,0 12,17Z" />
+    </SvgIcon>
+  );
+}
+
+
+
 const CustomTableCell = TableCell.extend({
   addAttributes() {
     return {
@@ -127,30 +188,7 @@ const CustomTableCell = TableCell.extend({
   },
 });
 
-export const tableHTML = `
-  <table style="width:100%">
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Age</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-    </tr>
-    <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>80</td>
-    </tr>
-  </table>
-`;
+
 
 const MenuBar = ({ editor }) => {
   if (!editor) {
@@ -233,6 +271,55 @@ const MenuBar = ({ editor }) => {
           />
         </span>
       </BlackTooltip>
+      <BlackTooltip title="왼쪽 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetTextAlignLeftIcon
+            onClick={() => editor.commands.setTextAlign('left')}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="가운데 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetTextAlignCenterIcon
+            onClick={() => editor.commands.setTextAlign('center')}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="오른쪽 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetTextAlignRightIcon
+            onClick={() => editor.commands.setTextAlign('right')}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="굵게" arrow>
+        <span className="cdx-settings-button">
+          <SetTextBoldIcon
+            onClick={() => editor.commands.toggleBold()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="이텔릭" arrow>
+        <span className="cdx-settings-button">
+          <SetItalicIcon
+            onClick={() => editor.commands.toggleItalic()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="밑줄" arrow>
+        <span className="cdx-settings-button">
+          <SetUnderlindIcon
+            onClick={() => editor.commands.toggleUnderline()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="하이라이트" arrow>
+        <span className="cdx-settings-button">
+          <SetMarkIcon sx={{fontSize: 16}}
+            onClick={() => editor.commands.toggleHighlight()}
+          />
+        </span>
+      </BlackTooltip>
     </Box>
   );
 };
@@ -242,6 +329,11 @@ export default (props) => {
   const [showToolBar, setShowToolBar] = useState(false);
   const editor = useEditor({
     extensions: [
+      Underline,
+      Highlight,
+      TextAlign.configure({
+        types: ['heading', 'paragraph', 'table'],
+      }),
       StarterKit,
       Table.configure({
         resizable: true,

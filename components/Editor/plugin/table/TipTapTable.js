@@ -11,7 +11,7 @@ import TableHeader from '@tiptap/extension-table-header'
 
 
 export class TipTapTable {
-  constructor({ data, api, config,readOnly }) {
+  constructor({ data, api, config, readOnly }) {
     this.api = api;
     this.config = config || {};
 
