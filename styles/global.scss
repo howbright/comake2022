@@ -170,8 +170,9 @@ a {
     background-color: #F2F8FC;
 }
 .ce-block:active {
-    border: 1px #ccc solid;
+    border: 1px #1479F6 solid;
     border-radius: 6px;
+    box-shadow: 0 8px 6px -6px rgb(33 48 73 / 19%);
 }
 
 .ce-block:focus-within {

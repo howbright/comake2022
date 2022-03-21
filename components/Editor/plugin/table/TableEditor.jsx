@@ -157,26 +157,9 @@ const MenuBar = ({ editor }) => {
     return null;
   }
 
-  // const wrapper = document.createElement("div");
-
-  // this.settings.forEach((tune) => {
-  //   let button = document.createElement("div");
-
-  //   button.classList.add(this.api.styles.settingsButton);
-  //   button.innerHTML = tune.icon;
-  //   wrapper.appendChild(button);
-
-  //   button.addEventListener("click", () => {
-  //     this._toggleTune(tune.name);
-  //   });
-  // });
-
-  // return wrapper;
   const disable = "grey.400";
   const able = "black";
   return (
-    // 1px solid #e8e8eb
-    //sx={{m:1, boxShadow: 1, borderRadius: 16, border: 1}}
     <Box className={styles["table-inline-toolbar"]}>
       <BlackTooltip title="앞에 열 추가" arrow>
         <span className="cdx-settings-button">
@@ -250,31 +233,13 @@ const MenuBar = ({ editor }) => {
           />
         </span>
       </BlackTooltip>
-      {/* <BlackTooltip title="스타일 셀 전환" arrow>
-        <span className="cdx-settings-button">
-          <SetCellAttributeIcon
-            sx={{
-              color: editor.can().setCellAttribute("backgroundColor", "#FAF594")
-                ? able
-                : disable,
-            }}
-            onClick={() =>
-              editor
-                .chain()
-                .focus()
-                .setCellAttribute("backgroundColor", "#FAF594")
-                .run()
-            }
-          />
-        </span>
-      </BlackTooltip> */}
     </Box>
   );
 };
 
 export default (props) => {
 
-  const [showToolBar, setShowToolBar] = useState(true);
+  const [showToolBar, setShowToolBar] = useState(false);
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -284,47 +249,19 @@ export default (props) => {
       TableRow,
       TableHeader,
       // Default TableCell
-      // TableCell,
+      TableCell,
       // Custom TableCell with backgroundColor attribute
-      CustomTableCell,
+      // CustomTableCell,
     ],
     // injectCSS: false,
-    content: `
-      <table>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th colspan="3">Description</th>
-          </tr>
-          <tr>
-            <td>Cyndi Lauper</td>
-            <td>singer</td>
-            <td>songwriter</td>
-            <td>actress</td>
-          </tr>
-          <tr>
-            <td>Philipp Kühn</td>
-            <td>designer</td>
-            <td>developer</td>
-            <td>maker</td>
-          </tr>
-          <tr>
-            <td>Hans Pagel</td>
-            <td>wrote this</td>
-            <td colspan="2">that’s it</td>
-          </tr>
-        </tbody>
-      </table>
-    `,
+    content: props.content,
   });
 
   const handleFocusIn = (e) => {
-    console.log('in')
     setShowToolBar(true)
   }
 
   const handleFocusOut = (e) => {
-    console.log('out')
     setShowToolBar(false)
   }
 

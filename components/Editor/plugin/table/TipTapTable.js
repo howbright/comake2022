@@ -9,27 +9,26 @@ import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 
+
 export class TipTapTable {
-  constructor({ data, api, config }) {
+  constructor({ data, api, config,readOnly }) {
     this.api = api;
-    //this.api.toolbar.open();
     this.config = config || {};
-    this.data = {
-      url: data.url || "",
-      caption: data.caption || "",
-      withBorder: data.withBorder !== undefined ? data.withBorder : false,
-      withBackground:
-        data.withBackground !== undefined ? data.withBackground : false,
-      stretched: data.stretched !== undefined ? data.stretched : false,
-    };
+
+    if (!data || Object.keys(data).length === 0) {
+      this.data =  {
+        html: "<table style=\"width: 100%;\"><colgroup><col><col><col></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr></tbody></table>"
+      };
+    } else {
+      this.data = data
+    }
+    
     this.wrapper = undefined;
     this.editor = undefined;
-    this.settings = [
-      {
-        name: "mergeCells",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M5,10H3V4H11V6H5V10M19,18H13V20H21V14H19V18M5,18V14H3V20H11V18H5M21,4H13V6H19V10H21V4M8,13V15L11,12L8,9V11H3V13H8M16,11V9L13,12L16,15V13H21V11H16Z" /></sv`,
-      }
-    ];
+  }
+
+  static get isReadOnlySupported() {
+    return true
   }
 
   static get toolbox() {
@@ -42,117 +41,37 @@ export class TipTapTable {
 
   static get pasteConfig() {
     return {
-      tags: ["IMG"],
-      files: {
-        mimeTypes: ["image/*"],
-        extensions: ["gif", "jpg", "png"], // You can specify extensions instead of mime-types
-        patterns: {
-          image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i,
-        },
-      },
+      tags: ["TABLE"]
     };
   }
 
   /**
    * Automatic sanitize config
    */
+//    static get sanitize() {
+//     return {
+//         mark: {
+//             class: 'cdx-marker'
+//         }
+//     };
+// }
   static get sanitize() {
     return {
-      url: false, // disallow HTML
-      caption: {}, // only tags from Inline Toolbar
-    };
+      table: true,
+      colgroup: true, 
+      col: true, 
+      tbody: true, 
+      tr: true, 
+      th: true, 
+      p: true, 
+      td: true
+    }
   }
 
   render() {
     this.wrapper = document.createElement("div");
-    let buttonswrapper = document.createElement("div");
 
-    this.settings.forEach((tune) => {
-      let button = document.createElement("div");
-
-      button.classList.add(this.api.styles.settingsButton);
-      button.innerHTML = tune.icon;
-      buttonswrapper.appendChild(button);
-
-      button.addEventListener("click", () => {
-        if (tune.name === 'mergeCells' && this.editor.can().mergeCells()) {
-          this.editor.chain().focus().mergeCells().run()} 
-        }
-      );
-    });
-
-  var  showtool = true;
- ReactDOM.render(<TableEditor showtool={showtool}/>, this.wrapper)
-//  var editorWrapper = make('div');
-//     this.editor = new Editor({
-//       element: editorWrapper,
-//       extensions: [
-//           StarterKit, 
-//           Table.configure({
-//             HTMLAttributes: {
-//                 class: 'my-custom-class',
-//               },
-//             resizable: true,
-//           }),
-//         TableRow, 
-//         TableHeader, 
-//         TableCell],
-//       content: "<p>Hello World!</p>",
-//       autofocus: true,
-//       editable: true,
-//       injectCSS: false,
-//       content: `
-//       <table>
-//         <tbody>
-//           <tr>
-//             <th>Name</th>
-//             <th colspan="3">Description</th>
-//           </tr>
-//           <tr>
-//             <td>Cyndi Lauper</td>
-//             <td>singer</td>
-//             <td>songwriter</td>
-//             <td>actress</td>
-//           </tr>
-//           <tr>
-//             <td>Philipp Kühn</td>
-//             <td>designer</td>
-//             <td>developer</td>
-//             <td>maker</td>
-//           </tr>
-//           <tr>
-//             <td>Hans Pagel</td>
-//             <td>wrote this</td>
-//             <td colspan="2">that’s it</td>
-//           </tr>
-//         </tbody>
-//       </table>
-//     `,
-//     });
-
-//     this.wrapper.classList.add(styles['ProseMirror'])
-//    this.wrapper.appendChild(buttonswrapper);
-//    this.wrapper.appendChild(editorWrapper);
-
-// this.wrapper.addEventListener(
-//   "focusin",
-//   (e) => {
-//     e.stopPropagation();
-//     console.log('in')
-//     showtool = true;
-//   },
-//   true
-// );
-
-// this.wrapper.addEventListener(
-//   "focusout",
-//   (e) => {
-//     e.stopPropagation();
-//     console.log('out')
-//     showtool = false;
-//   },
-//   true
-// );
+ ReactDOM.render(<TableEditor content={this.data.html} />, this.wrapper)
 
 
     this.wrapper.addEventListener(
@@ -318,39 +237,29 @@ export class TipTapTable {
   }
 
   save(blockContent) {
+    const tableContent = blockContent.getElementsByTagName('table')[0].outerHTML;
+    console.log(tableContent)
+    return {
+      type: 'table',
+      html: tableContent
+    }
     //this.api.toolbar.open();
-    const image = blockContent.querySelector("img");
-    const caption = blockContent.querySelector("[contenteditable]");
+    // const image = blockContent.querySelector("img");
+    // const caption = blockContent.querySelector("[contenteditable]");
 
-    return Object.assign(this.data, {
-      url: image.src,
-      caption: caption.innerHTML || "",
-    });
+    // return Object.assign(this.data, {
+    //   url: image.src,
+    //   caption: caption.innerHTML || "",
+    // });
   }
 
   validate(savedData) {
-    //this.api.toolbar.open();
-    if (!savedData.url.trim()) {
-      return false;
-    }
 
     return true;
   }
 
   renderSettings() {
     const wrapper = document.createElement("div");
-
-    this.settings.forEach((tune) => {
-      let button = document.createElement("div");
-
-      button.classList.add(this.api.styles.settingsButton);
-      button.innerHTML = tune.icon;
-      wrapper.appendChild(button);
-
-      button.addEventListener("click", () => {
-        this._toggleTune(tune.name);
-      });
-    });
 
     return wrapper;
   }
@@ -372,26 +281,8 @@ export class TipTapTable {
     console.log("여기1");
     switch (event.type) {
       case "tag":
-        const imgTag = event.detail.data;
-        this._createImage(imgTag.src);
-        break;
-      case "file":
-        console.log("여기2");
-        /* We need to read file here as base64 string */
-        const file = event.detail.file;
-        const reader = new FileReader();
-
-        reader.onload = (loadEvent) => {
-          this._createImage(loadEvent.target.result);
-        };
-
-        reader.readAsDataURL(file);
-        break;
-      case "pattern":
-        console.log("여기3");
-        const src = event.detail.data;
-
-        this._createImage(src);
+        const tableTag = event.detail.data;
+        this._createImage(tableTag.src);
         break;
     }
   }

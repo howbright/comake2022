@@ -1,6 +1,11 @@
 import style from './SimpleImage.module.css';
  
 export class SimpleImage {
+
+  static get isReadOnlySupported() {
+    return true
+  }
+
     constructor({ data, api, config }) {
       this.api = api;
       //this.api.toolbar.open();

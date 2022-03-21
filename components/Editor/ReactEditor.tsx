@@ -20,7 +20,6 @@ type MyProps = {
 
 const TOOL = Object.assign(EDITOR_JS_TOOLS, {
   signature: SignatureTune,
-  simpleImage : SimpleImage,
   footnotes: FootnotesTune,
   check: CheckboxTune
 })
@@ -29,6 +28,7 @@ export default class ReactEditor extends React.Component<MyProps> {
   render() {
     return (
       <ReactEditorJS
+      readOnly={false}
       onInitialize={this.props.onInitialize}
         tools={TOOL}
         defaultValue={{
@@ -50,6 +50,51 @@ export default class ReactEditor extends React.Component<MyProps> {
                   "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
               }
             },
+            {id: 'asdfawefawer',
+          type: "table",
+          data: {
+            html: "<table style=\"min-width: 100px;\"><colgroup><col><col><col><col></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\">Name</th><th colspan=\"3\" rowspan=\"1\">Dedddddscription</th></tr><tr><td colspan=\"1\" rowspan=\"2\">Cyndi Lauper</td><td colspan=\"1\" rowspan=\"1\">singer</td><td colspan=\"1\" rowspan=\"1\">songwriter</td><td colspan=\"1\" rowspan=\"1\">actress</td></tr><tr><td colspan=\"1\" rowspan=\"1\">designer</td><td colspan=\"1\" rowspan=\"1\">developer</td><td colspan=\"1\" rowspan=\"1\">maker</td></tr><tr><td colspan=\"1\" rowspan=\"1\">Hans Pagel</td><td colspan=\"1\" rowspan=\"1\">wrote this</td><td colspan=\"2\" rowspan=\"1\">that’s it</td></tr></tbody></table>"
+          }
+        },
+            {id: "awerawer",
+             type: "table",
+             data: {  
+               html: `<table style="min-width: 100px;"><colgroup><col><col><col><col></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="3" rowspan="1"><p>Dedddddscription</p></th></tr><tr><td colspan="1" rowspan="2"><p>Cyndi Lauper</p></td><td colspan="1" rowspan="1"><p>singer</p></td><td colspan="1" rowspan="1"><p>songwriter</p></td><td colspan="1" rowspan="1"><p>actress</p></td></tr><tr><td colspan="1" rowspan="1"><p>designer</p></td><td colspan="1" rowspan="1"><p>developer</p></td><td colspan="1" rowspan="1"><p>maker</p></td></tr><tr><td colspan="1" rowspan="1"><p>Hans Pagel</p></td><td colspan="1" rowspan="1"><p>wrote this</p></td><td colspan="2" rowspan="1"><p>that’s it</p></td></tr></tbody></table>`
+             }
+          },
+            {
+              id: "12iM3lqzcmrt",
+              type: "table",
+              data: {
+                html:
+                `
+                <table class="cdx-table">
+                  <tbody>
+                    <tr>
+                      <th>Name</th>
+                      <th colspan="3">Dedddddscription</th>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">Cyndi Lauper</td>
+                      <td>singer</td>
+                      <td>songwriter</td>
+                      <td>actress</td>
+                    </tr>
+                    <tr>
+                      <td>designer</td>
+                      <td>developer</td>
+                      <td>maker</td>
+                    </tr>
+                    <tr>
+                      <td>Hans Pagel</td>
+                      <td>wrote this</td>
+                      <td colspan="2">that’s it</td>
+                    </tr>
+                  </tbody>
+                </table>
+              `
+              }
+            },
             {
               id: "fvZGuFXHmK",
               type: "header",
@@ -64,9 +109,18 @@ export default class ReactEditor extends React.Component<MyProps> {
               data: {
                 style: "unordered",
                 items: [
-                  "It is a block-styled editor",
-                  "It returns clean data output in JSON",
-                  "Designed to be extendable and pluggable with a simple API"
+                  {
+                  content: "It is a block-styled editor",
+                  items:[]
+                },
+                {
+                  content:  "It returns clean data output in JSON",
+                  items: []
+                },
+                {
+                  content:   "Designed to be extendable and pluggable with a simple API",
+                  items: []
+                }
                 ]
               }
             },
