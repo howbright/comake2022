@@ -215,6 +215,14 @@ function FillIcon(props) {
   );
 }
 
+function BorderAllIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M19,11H13V5H19M19,19H13V13H19M11,11H5V5H11M11,19H5V13H11M3,21H21V3H3V21Z" />
+    </SvgIcon>
+  );
+}
+
 
 
 const CustomTableAlignCell = TableCell.extend({
@@ -254,13 +262,13 @@ const CustomTableAlignCell = TableCell.extend({
           };
         },
       },
-      fontStretch: {
-        default: '100%',
-        parseHTML: (element) => element.getAttribute("data-font-stretch"),
+      border: {
+        default: '1px solid black',
+        parseHTML: (element) => element.getAttribute("data-border"),
         renderHTML: (attributes) => {
           return {
-            "data-font-stretch": attributes.fontStretch,
-            style: `font-stretch: ${attributes.fontStretch}`,
+            "data-border": attributes.border,
+            style: `border: ${attributes.border}`,
           };
         },
       },
@@ -497,9 +505,6 @@ const MenuBar = ({ editor }) => {
               let attr = editor.getAttributes('tableCell');
               let color = attr['backgroundColor'];
               for(let i = 0; i < ele.length; i++) {
-                console.log(color)
-                console.log(ele[i].value)
-                console.log("****")
                 if (color === ele[i].value){
                   ele[i].checked = true;
                 } else {
@@ -513,6 +518,23 @@ const MenuBar = ({ editor }) => {
             renderPallete()
           }
         </span>
+        <BlackTooltip title="외곽선" arrow>
+        <span className="cdx-settings-button">
+          <BorderAllIcon
+            onClick={(e) => {
+              let attr = editor.getAttributes('tableCell');
+              let border = attr['border'];
+              console.log(border)
+              let newBorder = '1px solid black'
+              if(border === '1px solid black'){
+                newBorder = '0px'
+              }
+              editor.chain().focus().setCellAttribute('border', newBorder).run()
+          
+          }}
+          />
+        </span>
+      </BlackTooltip>
     </Box>
   );
 };
