@@ -14,8 +14,6 @@ a {
 }
 
 
-
-
  /* Basic editor styles */
 .ProseMirror {
   margin-bottom: 1rem;
@@ -91,6 +89,8 @@ a {
       vertical-align: top;
       box-sizing: border-box;
       position: relative;
+      letter-spacing: 1;
+      font-weight: normal;
 
       > * {
         margin-bottom: 0;
@@ -121,6 +121,11 @@ a {
       pointer-events: none;
     }
   }
+}
+
+.ProseMirror p {
+  line-height: 1;
+  font-stretch: 50%;
 }
 
 

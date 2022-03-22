@@ -15,6 +15,8 @@ import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import { styled } from '@mui/material/styles';
+import { ConstructionOutlined } from "@mui/icons-material";
+import { relative } from "path";
 
 
 const BlackTooltip = styled(({ className, ...props }) => (
@@ -189,28 +191,31 @@ function SetUnderlindIcon(props) {
   );
 }
 
+function FontSizeUpIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M5.12,14L7.5,7.67L9.87,14M6.5,5L1,19H3.25L4.37,16H10.62L11.75,19H14L8.5,5H6.5M18,7L13,12.07L14.41,13.5L17,10.9V17H19V10.9L21.59,13.5L23,12.07L18,7Z" />
+    </SvgIcon>
+  );
+}
+
+function FontSizeDownIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M5.12,14L7.5,7.67L9.87,14M6.5,5L1,19H3.25L4.37,16H10.62L11.75,19H14L8.5,5H6.5M18,17L23,11.93L21.59,10.5L19,13.1V7H17V13.1L14.41,10.5L13,11.93L18,17Z" />
+    </SvgIcon>
+  );
+}
+
+function FillIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M19,11.5C19,11.5 17,13.67 17,15A2,2 0 0,0 19,17A2,2 0 0,0 21,15C21,13.67 19,11.5 19,11.5M5.21,10L10,5.21L14.79,10M16.56,8.94L7.62,0L6.21,1.41L8.59,3.79L3.44,8.94C2.85,9.5 2.85,10.47 3.44,11.06L8.94,16.56C9.23,16.85 9.62,17 10,17C10.38,17 10.77,16.85 11.06,16.56L16.56,11.06C17.15,10.47 17.15,9.5 16.56,8.94Z" />
+    </SvgIcon>
+  );
+}
 
 
-const CustomTableCell = TableCell.extend({
-  addAttributes() {
-    return {
-      // extend the existing attributes …
-      ...this.parent?.(),
-
-      // and add a new one …
-      backgroundColor: {
-        default: null,
-        parseHTML: (element) => element.getAttribute("data-background-color"),
-        renderHTML: (attributes) => {
-          return {
-            "data-background-color": attributes.backgroundColor,
-            style: `background-color: ${attributes.backgroundColor}`,
-          };
-        },
-      },
-    };
-  },
-});
 
 const CustomTableAlignCell = TableCell.extend({
   addAttributes() {
@@ -219,6 +224,16 @@ const CustomTableAlignCell = TableCell.extend({
       ...this.parent?.(),
 
       // and add a new one …
+      backgroundColor: {
+        default: 'white',
+        parseHTML: (element) => element.getAttribute("data-background-color"),
+        renderHTML: (attributes) => {
+          return {
+            "data-background-color": attributes.backgroundColor,
+            style: `background-color: ${attributes.backgroundColor}`,
+          };
+        },
+      },
       verticalAlign: {
         default: 'center',
         parseHTML: (element) => element.getAttribute("data-vertical-align"),
@@ -226,6 +241,26 @@ const CustomTableAlignCell = TableCell.extend({
           return {
             "data-vertical-align": attributes.verticalAlign,
             style: `vertical-align: ${attributes.verticalAlign}`,
+          };
+        },
+      },
+      fontSize: {
+        default: '1rem',
+        parseHTML: (element) => element.getAttribute("data-font-size"),
+        renderHTML: (attributes) => {
+          return {
+            "data-font-size": attributes.fontSize,
+            style: `font-size: ${attributes.fontSize}`,
+          };
+        },
+      },
+      fontStretch: {
+        default: '100%',
+        parseHTML: (element) => element.getAttribute("data-font-stretch"),
+        renderHTML: (attributes) => {
+          return {
+            "data-font-stretch": attributes.fontStretch,
+            style: `font-stretch: ${attributes.fontStretch}`,
           };
         },
       },
@@ -240,8 +275,49 @@ const MenuBar = ({ editor }) => {
     return null;
   }
 
+  const [showPallete, setShowPallete] = useState(false);
+
   const disable = "grey.400";
   const able = "black";
+
+  const renderPallete = () => {
+    if (showPallete) {
+      return (
+      <Box sx={{position:"absolute", display:"flex", alignContent:"center", justifyContent: "center" ,zIndex:10, top:0, left:30, backgroundColor: "white", width:'90px', height: '35px', boxShadow:2}}>
+         <form role="form">
+        <div className="form-group" style={{paddingLeft:'5px', width:'100%', height:'100%',  display:"flex", alignItems:"center", alignContent:"center", justifyItems: "stretch"}}>
+          <input type="radio" name="cor" id="cor1" className={styles['cor1'] + " " +styles["cinput"]} value="#fffff" onChange={(e) =>  {editor.chain().focus().setCellAttribute('backgroundColor', e.target.value).run(); setShowPallete(!showPallete)}}/>
+          <label htmlFor="cor1" className={styles['cor1'] + " " +  styles['clabel']} ></label>
+          <input type="radio" name="cor" id="cor2"  value="#f5f5f5" className={styles['cor2'] + " " +styles["cinput"]} onChange={(e) =>  {editor.chain().focus().setCellAttribute('backgroundColor', e.target.value).run(); setShowPallete(!showPallete)}}/>
+          <label htmlFor="cor2" className={styles['cor2'] + " " +  styles['clabel']}></label>
+          <input type="radio" name="cor" id="cor3"  value="#e3f2fd" className={styles['cor3'] + " " +styles["cinput"]} onChange={(e) =>  {editor.chain().focus().setCellAttribute('backgroundColor', e.target.value).run(); setShowPallete(!showPallete)}}/>
+          <label htmlFor="cor3" className={styles['cor3'] + " " +  styles['clabel']}></label>
+          <input type="radio" name="cor" id="cor4" value="#fff8e1" className={styles['cor4'] + " " +styles["cinput"]} onChange={(e) =>  {editor.chain().focus().setCellAttribute('backgroundColor', e.target.value).run(); setShowPallete(!showPallete)}}/>
+          <label htmlFor="cor4" className={styles['cor4'] + " " +  styles['clabel']}></label>
+          {/* <input type="radio" name="cor" id="cor5" class="cinput" value="#7AE7BF" />
+          <label for="cor5" class="cor5, clabel"></label>
+          <input type="radio" name="cor" id="cor6" class="cinput" value="#51B749" />
+          <label for="cor6" class="cor6, clabel"></label>
+          <input type="radio" name="cor" id="cor7" class="cinput" value="#FBD75B" />
+          <label for="cor7" class="cor7, clabel"></label>
+          <input type="radio" name="cor" id="cor8" class="cinput" value="#FFB878" />
+          <label for="cor8" class="cor8, clabel"></label>
+          <input type="radio" name="cor" id="cor9" class="cinput" value="#FF887C" />
+          <label for="cor9" class="cor9, clabel"></label>
+          <input type="radio" name="cor" id="cor10" class="cinput" value="#DC2127" />
+          <label for="cor10" class="cor10, clabel"></label>
+          <input type="radio" name="cor" id="cor11" class="cinput" value="#DBADFF" />
+          <label for="cor11" class="cor11, clabel"></label>
+          <input type="radio" name="cor" id="cor12" class="cinput" value="#E1E1E1" />
+          <label for="cor12" class="cor12, clabel"></label> */}
+        </div>
+    </form>
+        </Box>);
+    } else {
+      return <></>;
+    }
+  }
+
   return (
     <Box className={styles["table-inline-toolbar"]}>
       <BlackTooltip title="앞에 열 추가" arrow>
@@ -308,14 +384,14 @@ const MenuBar = ({ editor }) => {
           />
         </span>
       </BlackTooltip>
-      <BlackTooltip title="해더 셀 전환" arrow>
+      {/* <BlackTooltip title="해더 셀 전환" arrow>
         <span className="cdx-settings-button">
           <ToggleHeaderCellIcon
             sx={{ color: editor.can().toggleHeaderCell() ? able : disable }}
             onClick={() => editor.chain().focus().toggleHeaderCell().run()}
           />
         </span>
-      </BlackTooltip>
+      </BlackTooltip> */}
       <BlackTooltip title="왼쪽 정렬" arrow>
         <span className="cdx-settings-button">
           <SetTextAlignLeftIcon
@@ -334,6 +410,27 @@ const MenuBar = ({ editor }) => {
         <span className="cdx-settings-button">
           <SetTextAlignRightIcon
             onClick={() => editor.commands.setTextAlign('right')}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="위로 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetVerticalAlignTopIcon
+            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'top').run()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="가운데 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetVerticalAlignCenterIcon
+            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'middle').run()}
+          />
+        </span>
+      </BlackTooltip>
+      <BlackTooltip title="아래 정렬" arrow>
+        <span className="cdx-settings-button">
+          <SetVerticalAlignBottomIcon
+            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'bottom').run()}
           />
         </span>
       </BlackTooltip>
@@ -365,27 +462,57 @@ const MenuBar = ({ editor }) => {
           />
         </span>
       </BlackTooltip>
-      <BlackTooltip title="위로 정렬" arrow>
+      <BlackTooltip title="글자 크게" arrow>
         <span className="cdx-settings-button">
-          <SetVerticalAlignTopIcon
-            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'top').run()}
+          <FontSizeUpIcon
+            onClick={(e) => {
+              let attr = editor.getAttributes('tableCell');
+              let fontSize = attr['fontSize'];
+              let fontSizeNum = Number(fontSize.substr(0, fontSize.length-3));
+              let newFont = fontSizeNum + 0.063;
+              editor.chain().focus().setCellAttribute('fontSize', newFont + 'rem').run()
+          
+          }}
           />
         </span>
       </BlackTooltip>
-      <BlackTooltip title="가운데 정렬" arrow>
+      <BlackTooltip title="글자 작게" arrow>
         <span className="cdx-settings-button">
-          <SetVerticalAlignCenterIcon
-            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'middle').run()}
+          <FontSizeDownIcon
+            onClick={(e) => {
+              let attr = editor.getAttributes('tableCell');
+              let fontSize = attr['fontSize'];
+              let fontSizeNum = Number(fontSize.substr(0, fontSize.length-3));
+              let newFont = fontSizeNum - 0.063;
+              editor.chain().focus().setCellAttribute('fontSize', newFont + 'rem').run()
+          
+          }}
           />
         </span>
       </BlackTooltip>
-      <BlackTooltip title="아래 정렬" arrow>
-        <span className="cdx-settings-button">
-          <SetVerticalAlignBottomIcon
-            onClick={() => editor.chain().focus().setCellAttribute('verticalAlign', 'bottom').run()}
+        <span className="cdx-settings-button" style={{position: "relative"}}>
+          <FillIcon
+            onClick={(e, current) => {
+              var ele = document.getElementsByName('cor');
+              let attr = editor.getAttributes('tableCell');
+              let color = attr['backgroundColor'];
+              for(let i = 0; i < ele.length; i++) {
+                console.log(color)
+                console.log(ele[i].value)
+                console.log("****")
+                if (color === ele[i].value){
+                  ele[i].checked = true;
+                } else {
+                  ele[i].checked = false;
+                }
+              }
+              setShowPallete(!showPallete);
+          }}
           />
+          {
+            renderPallete()
+          }
         </span>
-      </BlackTooltip>
     </Box>
   );
 };
