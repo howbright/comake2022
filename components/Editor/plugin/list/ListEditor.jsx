@@ -23,6 +23,12 @@ export default () => {
     return null
   }
 
+  const onKeyDown = (e) => {
+      if(e.key === 'Tab') {
+          e.stopPropagation();
+      }
+  }
+
   return (
     <>
       <button
@@ -56,7 +62,7 @@ export default () => {
         liftListItem
       </button>
 
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor} onKeyDown={onKeyDown} />
     </>
   )
 }
