@@ -60,7 +60,6 @@ export class TipTapList {
       "keydown",
       (e) => {
         if (e.key === "Enter") {
-            e.stopPropagation();
             this.onEnterPressed(e);
             return;
         }
@@ -188,11 +187,13 @@ export class TipTapList {
    
     let listNode = range.commonAncestorContainer.parentNode.closest('li')
     if(!listNode) {
+        let listNode = range.commonAncestorContainer.parentNode.lastChild.remove();
         return;
     }
+    event.stopPropagation();
     
     listNode.parentNode.insertBefore(make("li"),listNode);
-    range.collapse();
+    //range.collapse();
 
     // if (isAtEnd) {
     //   range.insertNode(make('br'));
