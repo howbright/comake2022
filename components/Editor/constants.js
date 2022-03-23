@@ -13,11 +13,13 @@ import Delimiter from '@editorjs/delimiter'
 import AlignmentTuneTool  from 'editorjs-text-alignment-blocktune';
 import InlineCode from '@editorjs/inline-code';
 import {TipTapTable} from './plugin/table/TipTapTable'
+import {TipTapList} from './plugin/list/TipTapList'
 import NestedList from '@editorjs/nested-list';
 import Checklist from '@editorjs/checklist';
 import ColorPlugin from  'editorjs-text-color-plugin';
 import Underline from '@editorjs/underline';
 import BreakLine from 'editorjs-break-line';
+//import List from 'editorjs-list'
 
 export const EDITOR_JS_TOOLS = {
   breakLine: {
@@ -51,10 +53,11 @@ export const EDITOR_JS_TOOLS = {
   image: Image,
   table: {
     class: TipTapTable,
-    inlineToolbar: false
+    inlineToolbar: false,
+    tunes: ['footnotes']
   },
   list: {
-    class: NestedList,
+    class: TipTapList,
     tunes: ['footnotes'],
     inlineToolbar: true
   },

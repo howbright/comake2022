@@ -3,6 +3,10 @@ body {
   padding: 0;
   margin: 0;
 }
+ol {
+  // padding: 0 1rem;
+   padding-inline-start: 20px;
+ }
 
 a {
   color: inherit;
@@ -24,7 +28,7 @@ a {
 
   ul,
   ol {
-    padding: 0 1rem;
+   padding: 0 1rem;
   }
 
   h1,
@@ -190,3 +194,26 @@ a {
    box-shadow: 0 8px 6px -6px rgb(33 48 73 / 19%);
    border-bottom-color: #c7c7c7;
 } 
+
+
+
+@counter-style circled-alpha {
+  system: fixed;
+  symbols: Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ;
+  suffix: " ";
+}
+
+@counter-style korean-consonant {
+  system: fixed;
+  prefix: "(";
+  symbols: (가) (나) (다) (라) (마) (바) (사) (아) (자) (차) (카) (타) (파) (하);
+  suffix: ") ";
+}
+
+@counter-style contract-style {
+  system: fixed;
+  prefix: "제";
+  symbols: 1 2 3 4 5 6 7 8 9 10;
+  suffix: " 조. ";
+}
+//동그라미속 1,2,3, / / 1 / (1) / 1) / ㄱㄴㄷ/ 가나다/ 제1조

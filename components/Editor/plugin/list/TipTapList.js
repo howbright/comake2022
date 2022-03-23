@@ -1,23 +1,16 @@
 import ReactDOM from "react-dom";
 import { make } from "../dom";
-import styles from "./TipTapTable.module.scss";
-import TableEditor from "./TableEditor.jsx";
-import { Editor } from "@tiptap/core";
-import StarterKit from "@tiptap/starter-kit";
-import Table from '@tiptap/extension-table'
-import TableRow from '@tiptap/extension-table-row'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
+import ListEditor from "./ListEditor.jsx";
 
 
-export class TipTapTable {
+export class TipTapList {
   constructor({ data, api, config, readOnly }) {
     this.api = api;
     this.config = config || {};
 
     if (!data || Object.keys(data).length === 0) {
       this.data =  {
-        html: "<table style=\"width: 100%;\"><colgroup><col><col><col></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr></tbody></table>"
+        html: ""
       };
     } else {
       this.data = data
@@ -34,56 +27,49 @@ export class TipTapTable {
   static get toolbox() {
     //this.api.toolbar.open();
     return {
-      title: "Table",
-      icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M5,8V12H11V8H5M13,8V12H19V8H13M5,14V18H11V14H5M13,14V18H19V14H13Z" /></svg>',
+      title: "list",
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z" /></svg>',
     };
   }
 
   static get pasteConfig() {
     return {
-      tags: ["TABLE"]
+      tags: ["OL","UL","LI"]
     };
   }
 
   /**
    * Automatic sanitize config
    */
-//    static get sanitize() {
-//     return {
-//         mark: {
-//             class: 'cdx-marker'
-//         }
-//     };
-// }
+
   static get sanitize() {
     return {
-      table: true,
-      colgroup: true, 
-      col: true, 
-      tbody: true, 
-      tr: true, 
-      th: true, 
-      p: true, 
-      td: true
+      ul: true,
+      ol: true, 
+      li: true, 
+      sup: true,
     }
   }
 
   render() {
     this.wrapper = document.createElement("div");
 
-     ReactDOM.render(<TableEditor content={this.data.html} />, this.wrapper)
-
+    ReactDOM.render(<ListEditor content={this.data.html} />, this.wrapper)
 
     this.wrapper.addEventListener(
       "keydown",
       (e) => {
-        e.stopPropagation();
-
-        if (e.key !== "Enter") {
-          return;
+        if (e.key === "Enter") {
+            e.stopPropagation();
+            this.onEnterPressed(e);
+            return;
         }
+        if (e.key !== "Tab"){
+            return;
+        }
+       
 
-        this.onEnterPressed(e);
+        
       },
       true
     );
@@ -199,8 +185,13 @@ export class TipTapTable {
     }
 
     // const isAtEnd = this.isRangeAtEnd(range);
-
-    range.insertNode(make("br"));
+   
+    let listNode = range.commonAncestorContainer.parentNode.closest('li')
+    if(!listNode) {
+        return;
+    }
+    
+    listNode.parentNode.insertBefore(make("li"),listNode);
     range.collapse();
 
     // if (isAtEnd) {
