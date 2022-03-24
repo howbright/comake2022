@@ -195,7 +195,14 @@ a {
    border-bottom-color: #c7c7c7;
 } 
 
+.korean {
+  list-style: korean-consonant;
+}
 
+
+.alpha {
+  list-style: circled-alpha;
+}
 
 @counter-style circled-alpha {
   system: fixed;

@@ -187,7 +187,9 @@ export class TipTapList {
    
     let listNode = range.commonAncestorContainer.parentNode.closest('li')
     if(!listNode) {
-        let listNode = range.commonAncestorContainer.parentNode.lastChild.remove();
+        if(range.commonAncestorContainer.parentNode.lastChild.tagName === 'P'){
+            let listNode = range.commonAncestorContainer.parentNode.lastChild.remove();
+        }
         return;
     }
     event.stopPropagation();
