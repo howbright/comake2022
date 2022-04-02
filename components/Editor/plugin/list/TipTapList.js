@@ -262,7 +262,6 @@ export class TipTapList {
 
 
   onPaste(event) {
-    console.log("여기1");
     switch (event.type) {
       case "tag":
         const tableTag = event.detail.data;

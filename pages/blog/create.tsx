@@ -50,23 +50,6 @@ const handleSave = React.useCallback(async () => {
       </Head>
       <h1>Create Blog!!</h1>
       <button onClick={handleSave}>저장</button>
-      <ol id='abc' style={{listStyle: "circled-alpha"}}>
-        <li>나는너</li>
-          <ol style={{listStyle: "contract-style"}}>
-          <li>나는너</li>
-          <li>나는너</li>
-          <li>나는너</li>
-          <li>나는너</li>
-        </ol>
-        <li>나는너</li>
-        <li>나는너</li>
-        <li>나는너</li>
-      </ol>
-      {/* <Editor
-        onSave={(editorData, title, description) =>
-          onSaveHandler(editorData, title, description)
-        }
-      /> */}
       <ReactEditor onInitialize={handleInitialize} />
     </div>
   );

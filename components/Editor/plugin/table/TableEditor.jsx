@@ -1,22 +1,18 @@
-import React, { useState } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Table from "@tiptap/extension-table";
-import TableRow from "@tiptap/extension-table-row";
-import TableCell from "@tiptap/extension-table-cell";
-import TableHeader from "@tiptap/extension-table-header";
-import TextAlign from "@tiptap/extension-text-align";
-import Highlight from "@tiptap/extension-highlight"
-import Underline from '@tiptap/extension-underline'
-//import classNames from 'classnames/bind'
-import styles from "./TableEditor.module.scss";
-import { IconButton } from "@mui/material";
-import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
-import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import { styled } from '@mui/material/styles';
-import { ConstructionOutlined } from "@mui/icons-material";
-import { relative } from "path";
+import SvgIcon from "@mui/material/SvgIcon";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Highlight from "@tiptap/extension-highlight";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import TextAlign from "@tiptap/extension-text-align";
+import Underline from '@tiptap/extension-underline';
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import React, { useState } from "react";
+import styles from "./TableEditor.module.scss";
 
 
 const BlackTooltip = styled(({ className, ...props }) => (
@@ -272,6 +268,16 @@ const CustomTableAlignCell = TableCell.extend({
           };
         },
       },
+      textAlign: {
+        default: 'left',
+        parseHTML: (element) => element.getAttribute("data-text-align"),
+        renderHTML: (attributes) => {
+          return {
+            "data-text-align": attributes.textAlign,
+            style: `text-align: ${attributes.textAlign}`
+          }
+        }
+      }
     };
   },
 });

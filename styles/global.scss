@@ -195,32 +195,93 @@ a {
    border-bottom-color: #c7c7c7;
 } 
 
-.korean {
-  list-style: korean-consonant;
+.alpha-lower {
+  list-style: alpha-lower;
 }
 
 
-.alpha {
-  list-style: circled-alpha;
+.alpha-upper {
+  list-style: alpha-upper;
 }
 
-@counter-style circled-alpha {
+.korean-a {
+  list-style: korean-a;
+}
+
+.korean-c {
+  list-style: korean-c;
+}
+
+.circled-korean {
+  list-style: circled-korean;
+}
+
+.decimal {
+  list-style: decimal;
+}
+.half-braced-decimal {
+  list-style: hbraced-decimal;
+}
+
+.braced-decimal {
+  list-style: braced-decimal;
+}
+
+.circled-decimal {
+  list-style: circled-decimal;
+}
+
+@counter-style alpha-lower {
   system: fixed;
-  symbols: Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ;
-  suffix: " ";
+  symbols: a b c d e f g h i g k l m n o p q r s t u v w x y z;
+  suffix: ". ";
 }
 
-@counter-style korean-consonant {
+@counter-style alpha-upper {
   system: fixed;
-  prefix: "(";
-  symbols: (가) (나) (다) (라) (마) (바) (사) (아) (자) (차) (카) (타) (파) (하);
+  symbols: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
+  suffix: ". ";
+}
+
+@counter-style hbraced-decimal {
+  system: fixed;
+  prefix: "";
+  symbols: "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" ;
   suffix: ") ";
 }
 
-@counter-style contract-style {
+@counter-style korean-a {
   system: fixed;
-  prefix: "제";
-  symbols: 1 2 3 4 5 6 7 8 9 10;
-  suffix: " 조. ";
+  prefix: "";
+  symbols: 가 나 다 라 마 바 사 아 자 차 카 타 파 하;
+  suffix: ". ";
+}
+
+@counter-style korean-c {
+  system: fixed;
+  prefix: "";
+  symbols:  ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ;
+  suffix: ". ";
+}
+
+@counter-style circled-korean {
+  system: fixed;
+  prefix: "";
+  symbols:  ㉠	㉡	㉢	㉣	㉤	㉥	㉦	㉧	㉨	㉩	㉪	㉫	㉬	㉭;
+  suffix: " ";
+}
+
+
+@counter-style circled-decimal {
+  system: fixed;
+  symbols: ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮;
+  suffix: "  ";
+}
+
+
+@counter-style braced-decimal {
+  system: fixed;
+  symbols: ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂;
+  suffix: "  ";
 }
 //동그라미속 1,2,3, / / 1 / (1) / 1) / ㄱㄴㄷ/ 가나다/ 제1조

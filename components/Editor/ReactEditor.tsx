@@ -35,6 +35,43 @@ export default class ReactEditor extends React.Component<MyProps> {
           time: 1635603431943,
           blocks: [
             {
+              id: 'asdf',
+              type: "table",
+              data: {
+                html: 
+                `
+                <table border="1" cellpadding="1" cellspacing="1" style="width:500px">
+	<tbody>
+		<tr>
+			<td style="text-align:center">항목</td>
+			<td style="text-align:center">내용</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">연봉 / 월&middot;일&middot;시급</td>
+			<td style="text-align:center">00,000,000 원(원천징수세액 및 4대보험 공제 전)</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">상여금</td>
+			<td style="text-align:center">00,000,000 원(또는 상여금 산정기준)</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">기타급여 (제수당)</td>
+			<td style="text-align:center">0,000,000 원(또는 지급기준)</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">임금지급일</td>
+			<td style="text-align:center">매월 00일(휴일인 경우, 그 직전 영업일에 지급)</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">지급방법 / 지급계좌</td>
+			<td style="text-align:center">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+                `
+              }
+            },
+            {
               id: "sheNwCUP5A",
               type: "header",
               data: {
@@ -47,7 +84,8 @@ export default class ReactEditor extends React.Component<MyProps> {
               type: "paragraph",
               data: {
                 text:
-                  "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
+                  `<p>주소:&nbsp;<br />
+                  대표이사:&nbsp;</p>`
               }
             },
             {
@@ -91,27 +129,27 @@ export default class ReactEditor extends React.Component<MyProps> {
                 level: 3
               }
             },
-            {
-              id: "xnPuiC9Z8M",
-              type: "list",
-              data: {
-                style: "unordered",
-                items: [
-                  {
-                  content: "It is a block-styled editor",
-                  items:[]
-                },
-                {
-                  content:  "It returns clean data output in JSON",
-                  items: []
-                },
-                {
-                  content:   "Designed to be extendable and pluggable with a simple API",
-                  items: []
-                }
-                ]
-              }
-            },
+            // {
+            //   id: "xnPuiC9Z8M",
+            //   type: "list",
+            //   data: {
+            //     style: "unordered",
+            //     items: [
+            //       {
+            //       content: "It is a block-styled editor",
+            //       items:[]
+            //     },
+            //     {
+            //       content:  "It returns clean data output in JSON",
+            //       items: []
+            //     },
+            //     {
+            //       content:   "Designed to be extendable and pluggable with a simple API",
+            //       items: []
+            //     }
+            //     ]
+            //   }
+            // },
             {
               id: "-MhwnSs3Dw",
               type: "header",

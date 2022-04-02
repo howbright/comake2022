@@ -18,15 +18,9 @@ import NestedList from '@editorjs/nested-list';
 import Checklist from '@editorjs/checklist';
 import ColorPlugin from  'editorjs-text-color-plugin';
 import Underline from '@editorjs/underline';
-import BreakLine from 'editorjs-break-line';
 //import List from 'editorjs-list'
 
 export const EDITOR_JS_TOOLS = {
-  breakLine: {
-    class: BreakLine,
-    inlineToolbar: true,
-    shortcut: 'CMD+SHIFT+ENTER',
-  },
   underline: Underline,
   quote: Quote,
   marker: Marker,
