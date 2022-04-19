@@ -195,6 +195,53 @@ a {
    border-bottom-color: #c7c7c7;
 } 
 
+
+ol[data-type="decimalList"] {
+  list-style: decimal;
+}
+
+ol[data-type="halfBracedDecimalList"] {
+  list-style: hbraced-decimal;
+}
+
+
+ol[data-type="bracedDecimalList"] {
+  list-style: braced-decimal;
+}
+
+
+ol[data-type="circledDecimalList"] {
+  list-style: circled-decimal;
+}
+
+ 
+ol[data-type="koreanAList"] {
+  list-style: korean-a;
+}
+
+
+ol[data-type="koreanCList"] {
+  list-style: korean-c;
+}
+
+
+ol[data-type="circledKoreanList"] {
+  list-style: circled-korean;
+}
+
+
+ol[data-type="alphaLowerList"] {
+  list-style: alpha-lower;
+}
+
+ol[data-type="alphaUpperList"] {
+  list-style: alpha-upper;
+}
+
+
+
+
+
 .alpha-lower {
   list-style: alpha-lower;
 }
@@ -285,3 +332,29 @@ a {
   suffix: "  ";
 }
 //동그라미속 1,2,3, / / 1 / (1) / 1) / ㄱㄴㄷ/ 가나다/ 제1조
+
+
+
+
+ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+
+  p {
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+
+    > label {
+      flex: 0 0 auto;
+      margin-right: 0.5rem;
+      user-select: none;
+    }
+
+    > div {
+      flex: 1 1 auto;
+    }
+  }
+}

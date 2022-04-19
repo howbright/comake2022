@@ -34,7 +34,8 @@ export class TipTapList {
 
   static get pasteConfig() {
     return {
-      tags: ["OL","UL","LI"]
+      tags: ["OL","UL","LI"],
+      classes: ['circled-decimal']
     };
   }
 
@@ -53,6 +54,7 @@ export class TipTapList {
 
   render() {
     this.wrapper = document.createElement("div");
+
 
     ReactDOM.render(<ListEditor content={this.data.html} />, this.wrapper)
 
@@ -208,32 +210,12 @@ export class TipTapList {
     // this.textarea.normalize();
   }
 
-  _createImage(url, captionText) {
-    const image = document.createElement("img");
-    const caption = document.createElement("div");
-
-    image.src = url;
-    caption.placeholder = "Caption...";
-    caption.contentEditable = true;
-    caption.innerHTML = captionText || "";
-    caption.addEventListener("click", (event) => {
-      console.log(this.api.toolbar);
-      this.api.toolbar.open();
-    });
-
-    this.wrapper.innerHTML = "";
-    this.wrapper.appendChild(image);
-    this.wrapper.appendChild(caption);
-
-    this._acceptTuneView();
-  }
-
   save(blockContent) {
-    const tableContent = blockContent.getElementsByTagName('table')[0].outerHTML;
-    console.log(tableContent)
+    const listContent = blockContent.getElementsByTagName('ol')[0].outerHTML;
+    console.log(listContent)
     return {
-      type: 'table',
-      html: tableContent
+      type: 'list',
+      html: listContent
     }
   }
 
@@ -247,6 +229,7 @@ export class TipTapList {
 
     return wrapper;
   }
+
 
   /**
    * @private

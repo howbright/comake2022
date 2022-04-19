@@ -236,7 +236,7 @@ export class TipTapTable {
 
   save(blockContent) {
     const tableContent = blockContent.getElementsByTagName('table')[0].outerHTML;
-    console.log(tableContent)
+    // console.log(tableContent)
     return {
       type: 'table',
       html: tableContent

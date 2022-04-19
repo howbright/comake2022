@@ -10,6 +10,8 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import BlackTooltip from "../BlackToolTip";
 import styles from "./ListEditor.module.scss";
 import React, { useState } from "react";
+import TaskList from "@tiptap/extension-task-list";
+import TaskItem from "@tiptap/extension-task-item";
 
 function IndentIncreaseIcon(props) {
   return (
@@ -29,6 +31,22 @@ function IndentDecreaseIcon(props) {
 
 const DecimalList = OrderedList.extend({
   name: "decimalList",
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      class: 'decimal'
+    }
+  },
+});
+
+const CustomOrderedList2 = OrderedList.extend({
+  name: "customOrderedList2",
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      class: 'decimal'
+    }
+  },
 });
 
 const HalfBracedDecimalList = OrderedList.extend({
@@ -44,23 +62,23 @@ const CircledDecimalList = OrderedList.extend({
 });
 
 const KoreanAList = OrderedList.extend({
-  name: "koreanAList",
+  name: "koreanAList"
 });
 
 const KoreanCList = OrderedList.extend({
-  name: "koreanCList",
+  name: "koreanCList"
 });
 
 const CircledKoreanList = OrderedList.extend({
-  name: "circledKoreanList",
+  name: "circledKoreanList"
 });
 
 const AlphaLowerList = OrderedList.extend({
-  name: "alphaLowerList",
+  name: "alphaLowerList"
 });
 
 const AlphaUpperList = OrderedList.extend({
-  name: "alphaUpperList",
+  name: "alphaUpperList"
 });
 
 const MenuBar = ({ editor }) => {
@@ -74,150 +92,191 @@ const MenuBar = ({ editor }) => {
   const able = "black";
 
   return (
-      <Box className={styles["table-inline-toolbar"]}>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("bulletList")
-              ? editor.chain().focus().toggleBulletList().run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("bulletList") ? able : disable }}
-          disabled={true}
-        >
-          ●
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("decimalList")
-              ? editor.chain().focus().toggleList("decimalList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("decimalList") ? able : disable }}
-          disabled={true}
-        >
-          1
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("halfBracedDecimalList")
-              ? editor.chain().focus().toggleList("halfBracedDecimalList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("halfBracedDecimalList") ? able : disable }}
-          disabled={true}
-        >
-          1)
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("bracedDecimalList")
-              ? editor.chain().focus().toggleList("bracedDecimalList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("bracedDecimalList") ? able : disable }}
-          disabled={true}
-        >
-          (1)
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("circledDecimalList")
-              ? editor.chain().focus().toggleList("circledDecimalList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("circledDecimalList") ? able : disable }}
-          disabled={true}
-        >
-          ①
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("koreanAList")
-              ? editor.chain().focus().toggleList("koreanAList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("koreanAList") ? able : disable }}
-          disabled={true}
-        >
-          가
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("koreanCList")
-              ? editor.chain().focus().toggleList("koreanCList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("koreanCList") ? able : disable }}
-          disabled={true}
-        >
-          ㄱ
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("circledKoreanList")
-              ? editor.chain().focus().toggleList("circledKoreanList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("circledKoreanList") ? able : disable }}
-          disabled={true}
-        >
-          ㉠
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("alphaLowerList")
-              ? editor.chain().focus().toggleList("alphaLowerList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("alphaLowerList") ? able : disable }}
-          disabled={true}
-        >
-          a
-        </Box>
-        <Box
-          className={"cdx-settings-button"}
-          onClick={() => {
-            !editor.isActive("alphaUpperList")
-              ? editor.chain().focus().toggleList("alphaUpperList", "listItem").run()
-              : "";
-          }}
-          sx={{ color: !editor.isActive("alphaUpperList") ? able : disable }}
-          disabled={true}
-        >
-          A
-        </Box>
-        <BlackTooltip title="tab" arrow>
+    <Box className={styles["table-inline-toolbar"]}>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("bulletList")
+            ? editor.chain().focus().toggleBulletList().run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("bulletList") ? able : disable }}
+        disabled={true}
+      >
+        ●
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("decimalList")
+            ? editor.chain().focus().toggleList("decimalList", "listItem").run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("decimalList") ? able : disable }}
+        disabled={true}
+      >
+        1
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("halfBracedDecimalList")
+            ? editor
+                .chain()
+                .focus()
+                .toggleList("halfBracedDecimalList", "listItem")
+                .run()
+            : "";
+        }}
+        sx={{
+          color: !editor.isActive("halfBracedDecimalList") ? able : disable,
+        }}
+        disabled={true}
+      >
+        1)
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("bracedDecimalList")
+            ? editor
+                .chain()
+                .focus()
+                .toggleList("bracedDecimalList", "listItem")
+                .run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("bracedDecimalList") ? able : disable }}
+        disabled={true}
+      >
+        (1)
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("circledDecimalList")
+            ? editor
+                .chain()
+                .focus()
+                .toggleList("circledDecimalList", "listItem")
+                .run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("circledDecimalList") ? able : disable }}
+        disabled={true}
+      >
+        ①
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("koreanAList")
+            ? editor.chain().focus().toggleList("koreanAList", "listItem").run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("koreanAList") ? able : disable }}
+        disabled={true}
+      >
+        가
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("koreanCList")
+            ? editor.chain().focus().toggleList("koreanCList", "listItem").run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("koreanCList") ? able : disable }}
+        disabled={true}
+      >
+        ㄱ
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("circledKoreanList")
+            ? editor
+                .chain()
+                .focus()
+                .toggleList("circledKoreanList", "listItem")
+                .run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("circledKoreanList") ? able : disable }}
+        disabled={true}
+      >
+        ㉠
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("alphaLowerList")
+            ? editor
+                .chain()
+                .focus()
+                .toggleList("alphaLowerList", "listItem")
+                .run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("alphaLowerList") ? able : disable }}
+        disabled={true}
+      >
+        a
+      </Box>
+      <Box
+        className={"cdx-settings-button"}
+        onClick={() => {
+          !editor.isActive("alphaUpperList")
+            ? editor
+                .chain()
+                .focus()
+                .toggleList("alphaUpperList", "listItem")
+                .run()
+            : "";
+        }}
+        sx={{ color: !editor.isActive("alphaUpperList") ? able : disable }}
+        disabled={true}
+      >
+        A
+      </Box>
+      <BlackTooltip title="tab" arrow>
         <span className="cdx-settings-button">
           <IndentIncreaseIcon
-            sx={{ color: editor.can().sinkListItem("listItem") ? able : disable }}
-            onClick={() => editor.can().sinkListItem("listItem")? editor.chain().focus().sinkListItem("listItem").run(): ""}
+            sx={{
+              color: editor.can().sinkListItem("listItem") ? able : disable,
+            }}
+            onClick={() =>
+              editor.can().sinkListItem("listItem")
+                ? editor.chain().focus().sinkListItem("listItem").run()
+                : ""
+            }
           />
         </span>
       </BlackTooltip>
       <BlackTooltip title="shift + tab" arrow>
         <span className="cdx-settings-button">
           <IndentDecreaseIcon
-            sx={{ color: editor.can().liftListItem("listItem") ? able : disable }}
-            onClick={() => editor.can().liftListItem("listItem") ? editor.chain().focus().liftListItem("listItem").run(): ""}
+            sx={{
+              color: editor.can().liftListItem("listItem") ? able : disable,
+            }}
+            onClick={() =>
+              editor.can().liftListItem("listItem")
+                ? editor.chain().focus().liftListItem("listItem").run()
+                : ""
+            }
           />
         </span>
       </BlackTooltip>
-      </Box>
-  )
-}
+    </Box>
+  );
+};
 
-export default () => {
-
+//props.content
+export default (props) => {
   const [showToolBar, setShowToolBar] = useState(false);
+
+  //console.log(props.content);
+
 
   const editor = useEditor({
     extensions: [
@@ -225,14 +284,15 @@ export default () => {
       Paragraph,
       Text,
       BulletList,
-      DecimalList.configure({
-        HTMLAttributes: {
-          class: "decimal",
-        },
-      }),
-      HalfBracedDecimalList.configure({
+      CustomOrderedList2,
+     HalfBracedDecimalList.configure({
         HTMLAttributes: {
           class: "half-braced-decimal",
+        },
+      }),
+      DecimalList.configure({
+        HTMLAttributes: {
+          class:  "decimal",
         },
       }),
       CircledDecimalList.configure({
@@ -271,15 +331,15 @@ export default () => {
         },
       }),
       ListItem,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
     ],
-    content: `
-        <ol>
-          <li>This is a bullet list.</li>
-          <li>And it has three list items.</li>
-          <li>Here is the third one.</li>
-        </ol>
-      `,
+    content: props.content,
   });
+
+  console.log(editor);
 
   if (!editor) {
     return null;
@@ -292,17 +352,16 @@ export default () => {
   };
 
   const handleFocusIn = (e) => {
-    setShowToolBar(true)
-  }
+    setShowToolBar(true);
+  };
 
   const handleFocusOut = (e) => {
-    setShowToolBar(false)
-  }
+    setShowToolBar(false);
+  };
 
-  
   return (
     <Box onMouseLeave={handleFocusOut} onMouseEnter={handleFocusIn}>
-    {showToolBar && <MenuBar editor={editor} /> }
+      {showToolBar && <MenuBar editor={editor} />}
       <EditorContent editor={editor} onKeyDown={onKeyDown} />
     </Box>
   );

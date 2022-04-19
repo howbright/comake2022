@@ -35,40 +35,34 @@ export default class ReactEditor extends React.Component<MyProps> {
           time: 1635603431943,
           blocks: [
             {
-              id: 'asdf',
+              id: 'wow',
+              type: 'list',
+              data: {
+                html: ` <ul data-type="taskList">
+                <li data-type="taskItem" data-checked="true">A list item</li>
+                <li data-type="taskItem" data-checked="false">And another one</li>
+              </ul>`
+              }
+            },
+            {
+              id: 'testest',
               type: "table",
               data: {
-                html: 
-                `
-                <table border="1" cellpadding="1" cellspacing="1" style="width:500px">
-	<tbody>
-		<tr>
-			<td style="text-align:center">항목</td>
-			<td style="text-align:center">내용</td>
-		</tr>
-		<tr>
-			<td style="text-align:center">연봉 / 월&middot;일&middot;시급</td>
-			<td style="text-align:center">00,000,000 원(원천징수세액 및 4대보험 공제 전)</td>
-		</tr>
-		<tr>
-			<td style="text-align:center">상여금</td>
-			<td style="text-align:center">00,000,000 원(또는 상여금 산정기준)</td>
-		</tr>
-		<tr>
-			<td style="text-align:center">기타급여 (제수당)</td>
-			<td style="text-align:center">0,000,000 원(또는 지급기준)</td>
-		</tr>
-		<tr>
-			<td style="text-align:center">임금지급일</td>
-			<td style="text-align:center">매월 00일(휴일인 경우, 그 직전 영업일에 지급)</td>
-		</tr>
-		<tr>
-			<td style="text-align:center">지급방법 / 지급계좌</td>
-			<td style="text-align:center">&nbsp;</td>
-		</tr>
-	</tbody>
-</table>
-                `
+                html: `<table style="min-width: 50px;"><colgroup><col><col></colgroup><tbody><tr><td colspan="1" rowspan="1" data-background-color="#f5f5f5" style="background-color: #f5f5f5; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center"><strong>항목</strong></p></td><td colspan="1" rowspan="1" data-background-color="#f5f5f5" style="background-color: #f5f5f5; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center"><strong>내용</strong></p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">연봉 / 월·일·시급</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">00,000,000 원(원천징수세액 <mark>및 4대보험 </mark>공제 전)</p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: middle; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="middle" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">상여금</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">00,000,000 원(또는 상여금 산정기준)</p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">기타급여 (제수당)</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">0,000,000 원(또는 지급기준)</p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">임금지급일</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">매월 00일(휴일인 경우, 그 직전 영업일에 지급)</p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">지급방법 / 지급계좌</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center">&nbsp;</p></td></tr></tbody></table>`
+              }
+            },
+            {
+              id: 'aewrawer',
+              type: 'table',
+              data: {
+                html: `<table style="min-width: 100px;"><colgroup><col><col><col><col></colgroup><tbody><tr><td colspan="1" rowspan="1" data-background-color="#fff8e1" style="background-color: #fff8e1; vertical-align: middle; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="middle" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center"><strong><em>Name</em></strong></p></td><td colspan="3" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1.2519999999999998rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1.2519999999999998rem" data-border="1px solid black" data-text-align="left"><p>Dedddddscription</p></td></tr><tr><td colspan="1" rowspan="2" data-background-color="#fff8e1" style="background-color: #fff8e1; vertical-align: middle; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="middle" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center"><strong><em>Cyndi Lauper</em></strong></p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p>singer</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p><u>songwriter</u></p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p><u>actress</u></p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p>designer</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p>developer</p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p>maker</p></td></tr><tr><td colspan="1" rowspan="1" data-background-color="#fff8e1" style="background-color: #fff8e1; vertical-align: middle; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="middle" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p style="text-align: center"><strong><em>Hans Pagel</em></strong></p></td><td colspan="1" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p>wrote this</p></td><td colspan="2" rowspan="1" data-background-color="white" style="background-color: white; vertical-align: center; font-size: 1rem; border: 1px solid black; text-align: left" data-vertical-align="center" data-font-size="1rem" data-border="1px solid black" data-text-align="left"><p>that’s it</p></td></tr></tbody></table>`
+              }
+            },
+            {
+              id: 'listafwefwaef',
+              type: 'list',
+              data: {
+                html: `<ol class="circled-decimal"><li><p>This is a bullet list.</p><ol class="korean-a"><li><p>This is a bullet list.</p><ul><li><p>sdfasdf</p></li><li><p>asdfasdf</p></li><li><p>asdf</p></li></ul></li><li><p>And it has three list items.</p></li><li><p>Here is the third one.</p></li></ol></li><li><p>And it has three list items.</p></li><li><p>Here is the third one.</p></li></ol>`
               }
             },
             {
