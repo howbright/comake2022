@@ -51,6 +51,7 @@
     "editorjs-text-alignment-blocktune": "^1.0.3",
     "interactjs": "^1.10.11",
     "next": "^12.1.0",
+    "puppeteer": "^13.6.0",
     "react": "latest",
     "react-dom": "latest",
     "react-editor-js": "^2.0.6",

@@ -6,4 +6,7 @@ declare module '@editorjs/list' {
       render(): HTMLElement
     }
   }
+
+  declare module 'dom-pdf';
+  declare module '@codexteam/shortcuts';
   

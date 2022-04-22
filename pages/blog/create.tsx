@@ -1,14 +1,17 @@
-import Head from 'next/head';
+import Head from "next/head";
 import dynamic from "next/dynamic";
-import { OutputData } from '@editorjs/editorjs';
-import React from 'react';
-import { Button } from '@mui/material';
+import { OutputData } from "@editorjs/editorjs";
+import React from "react";
+import { Button } from "@mui/material";
 
 interface CreateBlogProps {}
-const CreateBlog = (props: CreateBlogProps) => { 
-  let ReactEditor = dynamic(() => import('../../components/Editor/ReactEditor'), {
-    ssr: false
-});
+const CreateBlog = (props: CreateBlogProps) => {
+  let ReactEditor = dynamic(
+    () => import("../../components/Editor/ReactEditor"),
+    {
+      ssr: false,
+    }
+  );
 
   // const onSaveHandler = async (blogData, title, description) => {
 
@@ -23,28 +26,36 @@ const CreateBlog = (props: CreateBlogProps) => {
   // };
 
   interface EditorCore {
-    destroy(): Promise<void>
-  
-    clear(): Promise<void>
-  
-    save(): Promise<OutputData>
-  
-    render(data: OutputData): Promise<void>
+    destroy(): Promise<void>;
+
+    clear(): Promise<void>;
+
+    save(): Promise<OutputData>;
+
+    render(data: OutputData): Promise<void>;
   }
 
-  const editorCore: any = React.useRef(null)
+  const editorCore: any = React.useRef(null);
 
-const handleInitialize = React.useCallback((instance: EditorCore) => {
-  editorCore.current = instance
-}, [])
+  const handleInitialize = React.useCallback((instance: EditorCore) => {
+    editorCore.current = instance;
+  }, []);
 
-const handleSave = React.useCallback(async () => {
-  const savedData = await editorCore.current.save();
-}, [])
+  const handleSave = React.useCallback(async () => {
+    const savedData = await editorCore.current.save();
+  }, []);
 
 
   return (
-    <div style={{ width: '100%', maxWidth: '900px', padding: '20px', margin: '0 auto', backgroundColor: '#fff' }}>
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "900px",
+        padding: "20px",
+        margin: "0 auto",
+        backgroundColor: "#fff",
+      }}
+    >
       <Head>
         <title>Create new blog</title>
       </Head>

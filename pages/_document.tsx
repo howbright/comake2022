@@ -11,10 +11,11 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href={process.env.NEXT_PUBLIC_BACKEND_URL + 'favicon.ico'}/>
+          <link rel="shortcut icon" href={process.env.NEXT_PUBLIC_BACKEND_URL + 'favicon.ico'} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            crossOrigin="anonymous"
           />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}

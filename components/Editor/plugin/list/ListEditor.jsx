@@ -275,8 +275,6 @@ const MenuBar = ({ editor }) => {
 export default (props) => {
   const [showToolBar, setShowToolBar] = useState(false);
 
-  //console.log(props.content);
-
 
   const editor = useEditor({
     extensions: [
@@ -338,8 +336,6 @@ export default (props) => {
     ],
     content: props.content,
   });
-
-  console.log(editor);
 
   if (!editor) {
     return null;
